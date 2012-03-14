@@ -4,7 +4,8 @@ module Tumblargh
     class BlockStart < Base
 
       def name
-        elements[1].text_value
+        str = elements[1].text_value
+        "#{str[0].upcase}#{str[1..str.size]}"
       end
 
       def matching_end
