@@ -1,12 +1,12 @@
 grammar Tumblr
 
   rule root
-    (block / tag / literal)* <Tumblargh::Node::Root>
+    (block / tag / orphan / literal)* <Tumblargh::Node::Root>
   end
 
   rule block
     block_start
-    (block / tag / literal)*
+    (block / tag / orphan / literal)*
     block_end
     <Tumblargh::Node::Block>
   end
@@ -21,6 +21,10 @@ grammar Tumblr
 
   rule tag
     '{' ([a-zA-Z0-9] [^\n/{};\[\]\(\)]+) '}' <Tumblargh::Node::Tag>
+  end
+
+  rule orphan
+    '{' !'/' <Tumblargh::Node::Literal>
   end
 
   rule literal
