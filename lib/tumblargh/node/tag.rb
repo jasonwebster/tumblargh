@@ -8,6 +8,10 @@ module Tumblargh
         n = name.split(':')
         if n.size == 2
           @type = "#{n.first.camelize.to_sym}Tag"
+
+          raise "There's an unclosed block somewhere..." if @type == 'BlockTag'
+
+          @type
         else
           super
         end
