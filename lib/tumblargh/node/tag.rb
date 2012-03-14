@@ -2,7 +2,17 @@ module Tumblargh
   module Node
 
     class Tag < Base
-      
+      def type
+        return @type if defined?(@type)
+
+        n = name.split(':')
+        if n.size == 2
+          @type = "#{n.first.camelize.to_sym}Tag"
+        else
+          super
+        end
+      end
+
       def name
         elements[1].text_value
       end

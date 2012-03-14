@@ -14,11 +14,6 @@ module Tumblargh
 
       def attributes=(attrs)
         @attributes = attrs.with_indifferent_access
-
-        # .map do |el|
-        #   el = el.with_indifferent_access if el.is_a? Hash
-        #   el
-        # end
       end
 
       def method_missing(method_symbol, *arguments)

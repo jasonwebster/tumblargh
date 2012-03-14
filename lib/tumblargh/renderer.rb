@@ -1,12 +1,16 @@
-require 'active_support'
-require 'active_support/core_ext/hash/indifferent_access'
-require 'active_support/inflector'
 require 'cgi'
 
 module Tumblargh
   module Renderer
 
     autoload :Base,    'tumblargh/renderer/base'
+    autoload :Literal, 'tumblargh/renderer/literal'
+
+    autoload :FontTag,     'tumblargh/renderer/tag'
+    autoload :TextTag,     'tumblargh/renderer/tag'
+    autoload :ImageTag,    'tumblargh/renderer/tag'
+    autoload :ColorTag,    'tumblargh/renderer/tag'
+    autoload :Tag,         'tumblargh/renderer/tag'
 
     def self.factory(node, context)
       args = []
@@ -50,6 +54,24 @@ module Tumblargh
         "#{context.url}rss"
       end
 
+      # Appearance options 
+      # http://www.tumblr.com/docs/en/custom_themes#appearance-options
+      def color(key)
+        'TODO CUSTOM COLOR'
+      end
+
+      def font(key)
+        'TODO CUSTOM FONT'
+      end
+
+      def image(key)
+        'TODO CUSTOM IMAGE'
+      end
+
+      def text(key)
+        'TODO CUSTOM TEXT'
+      end
+
       # END TAGS ------
 
       def render
@@ -69,20 +91,6 @@ module Tumblargh
         end
 
         res.flatten.join('')
-      end
-    end
-
-    class Literal < Base
-      def render
-        node[1]
-      end
-    end
-
-    class Tag < Base
-      def render
-        # {PhotoURL-500} becomes photo_url(500)
-        tag, *args = node[1].split('-')
-        context.send tag.underscore, *args
       end
     end
 
