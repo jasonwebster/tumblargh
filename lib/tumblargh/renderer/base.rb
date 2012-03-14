@@ -4,20 +4,11 @@ module Tumblargh
     class Base
 
       attr_reader :node
-      attr_reader :context
+      attr_accessor :context
 
       def initialize(node, context)
         @node = node
         @context = context
-      end
-
-      def resolve_renderer(node)
-        base = node.first.to_s
-
-        base = "Blocks::#{node[1]}" if base == 'Block'
-
-        klass_name = "Tumblargh::Renderer::#{base}"
-        klass_name.constantize rescue raise "Undefined block #{klass_name}"
       end
 
       def escape(str)

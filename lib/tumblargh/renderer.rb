@@ -8,6 +8,25 @@ module Tumblargh
 
     autoload :Base,    'tumblargh/renderer/base'
 
+    def self.factory(node, context)
+      base = node.first.to_s
+
+      if base == 'Block'
+        block_name = node[1]
+
+        if block_name[0..1] == 'If'
+          block_name = 'Boolean'
+        end
+
+        base = "Blocks::#{block_name}"
+      end
+
+      klass_name = "Tumblargh::Renderer::#{base}"
+      klass = klass_name.constantize
+
+      klass.new(node, context)
+    end
+
     # Document scoped tags live here
     class Document < Base
       # TAGS ----------
@@ -28,18 +47,17 @@ module Tumblargh
 
       def render
         res = node.map do |n|
-          klass = resolve_renderer(n)
-          if klass
-            # TODO LOLOLOLOLOLOLOL
-            if klass.name == 'Tumblargh::Renderer::Blocks::Posts'
-              context.posts.map do |p|
-                renderer = klass.new(n, p)
-                renderer.render
-              end
-            else
-              renderer = klass.new(n, self)
-              renderer.render
+          renderer = Renderer.factory(n, self)
+
+          # TODO LOLOLOLOLOLOLOL
+          if renderer.class.name == 'Tumblargh::Renderer::Blocks::Posts'
+            context.posts.map do |p|
+              p.context = self
+              post_renderer = renderer.class.new(n, p)
+              post_renderer.render
             end
+          else
+            renderer.render
           end
         end
 
@@ -78,12 +96,9 @@ module Tumblargh
           sig, type, *nodes = node
 
           res = nodes.map do |n|
-            klass = resolve_renderer(n)
-            if klass
-              # puts "#{self.class.name} --> #{self.context.class.name}"
-              renderer = klass.new(n, self)
-              renderer.render
-            end
+            # puts "#{self.class.name} --> #{self.context.class.name}"
+            renderer = Renderer.factory(n, self)
+            renderer.render
           end
 
           res.join('')
@@ -93,7 +108,7 @@ module Tumblargh
 
       class Description < Base
         def should_render?
-          !context.description.blank?
+          !description.blank?
         end
 
         def description
@@ -121,10 +136,6 @@ module Tumblargh
       # they should be defined here
       class Posts < Base
 
-        def initialize(node, context)
-          super
-        end
-
         def permalink
           context.post_url
         end
@@ -135,22 +146,6 @@ module Tumblargh
 
         def caption
           context.caption
-        end
-
-        def render
-          return '' unless should_render?
-
-          sig, type, *nodes = node
-
-          res = nodes.map do |n|
-            klass = resolve_renderer(n)
-            if klass
-              renderer = klass.new(n, self)
-              renderer.render
-            end
-          end
-
-          res.join('')
         end
 
       end
@@ -221,7 +216,12 @@ module Tumblargh
       class Link < Post
       end
 
-
+      # Meta-block for Appearance booleans, like {block:IfSomething}
+      class Boolean < Base
+        def should_render?
+          context
+        end
+      end
 
     end
   end
