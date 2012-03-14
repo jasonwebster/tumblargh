@@ -1,16 +1,11 @@
 require 'cgi'
 
+require 'tumblargh/renderer/base'
+require 'tumblargh/renderer/literal'
+require 'tumblargh/renderer/tag'
+
 module Tumblargh
   module Renderer
-
-    autoload :Base,    'tumblargh/renderer/base'
-    autoload :Literal, 'tumblargh/renderer/literal'
-
-    autoload :FontTag,     'tumblargh/renderer/tag'
-    autoload :TextTag,     'tumblargh/renderer/tag'
-    autoload :ImageTag,    'tumblargh/renderer/tag'
-    autoload :ColorTag,    'tumblargh/renderer/tag'
-    autoload :Tag,         'tumblargh/renderer/tag'
 
     def self.factory(node, context)
       args = []
@@ -27,6 +22,9 @@ module Tumblargh
             args << block_name[2..block_name.size]
             block_name = 'Boolean'
           end
+        elsif n_post = block_name.match(/Post(\d+)/)
+          block_name = 'NumberedPost'
+          args << n_post[1].to_i
         end
 
         base = "Blocks::#{block_name}"
@@ -136,12 +134,17 @@ module Tumblargh
 
       end
 
+      class NumberedPost < Base
+        attr_reader :num
 
+        def initialize(node, context, *args)
+          @num = args[0]
+          super(node, context)
+        end
 
-      class PreviousPage < Base
-      end
-
-      class NextPage < Base
+        def should_render?
+          num == context.posts.index(context_post) + 1
+        end
       end
 
       # Posts Loop
@@ -150,6 +153,10 @@ module Tumblargh
       # exist outside of a `type` block, such as {Title} or {Permalink}, so
       # they should be defined here
       class Posts < Base
+
+        def post_id
+          context.id
+        end
 
         def permalink
           context.post_url
@@ -231,6 +238,20 @@ module Tumblargh
       class Link < Post
       end
 
+      class Answer < Post
+        def question
+        end
+
+        def answer
+        end
+
+        def asker
+        end
+
+        def asker_portrait_url(size)
+        end
+      end
+
       # Meta-block for Appearance booleans, like {block:IfSomething}
       class Boolean < Base
         attr_reader :variable
@@ -250,6 +271,185 @@ module Tumblargh
           ! super
         end
       end
+
+
+      # Rendered on permalink pages. (Useful for displaying the current post's
+      # title in the page title)
+      class PostTitle < Base
+        def should_render?
+          false
+        end
+
+        def post_title
+          # TODO: Implementation
+        end
+      end
+
+      # Identical to {PostTitle}, but will automatically generate a summary 
+      # if a title doesn't exist.
+      class PostSummary < PostTitle
+        def post_summary
+          # TODO: Implementation
+        end
+      end
+
+
+
+      class ContentSource < Base
+        def should_render?
+          !source_title.nil?
+        end
+
+        def source_url
+          context.source_url
+        end
+
+        def source_title
+          context.source_title
+        end
+
+        # TODO: Impl.
+        def black_logo_url
+        end
+
+        def logo_width
+        end
+
+        def logo_height
+        end
+
+      end
+
+      class SourceLogo < Base
+        # TODO: Impl.
+      end
+
+      class NoSourceLogo < SourceLogo
+        def should_render?
+          ! super
+        end
+      end
+
+      class HasTags < Base
+        def should_render?
+          !(tags.nil? || tags.blank?)
+        end
+      end
+
+      # Rendered for each of a post's tags.
+      # TODO: Render for each tag in a post
+      class Tags < Base
+        def tag
+        end
+
+        def url_safe_tag
+        end
+
+        def tag_url
+        end
+
+        def tag_url_chrono
+        end
+      end
+
+
+      # Rendered on index (post) pages.
+      class IndexPage < Base
+      end
+
+      # Rendered on post permalink pages.
+      class PermalinkPage < Base
+        def should_render?
+          false
+        end
+      end
+
+      class SearchPage < Base
+        def should_render?
+          false
+        end
+      end
+
+      class NoSearchResults < Base
+        def should_render?
+          false
+        end
+      end
+
+      class TagPage < Base
+        def should_render?
+          false
+        end
+      end
+
+      # Rendered if you have defined any custom pages.
+      class HasPages < Base
+        # TODO: Implementation
+
+        def should_render?
+          false
+        end
+      end
+
+      # Rendered for each custom page.
+      class Pages < Base
+        # TODO: Implementation
+
+        def should_render?
+          false
+        end
+
+        # custom page url
+        def url
+        end
+
+        # custom page name/label
+        def label
+        end
+
+      end
+
+      # Rendered if you have Twitter integration enabled.
+      class Twitter < Base
+        # TODO: Implementation
+
+        def should_render?
+          false
+        end
+
+        def twitter_username
+        end
+
+      end
+
+
+
+      # {block:Likes} {/block:Likes}  Rendered if you are sharing your likes.
+      # {Likes} Standard HTML output of your likes.
+      # {Likes limit="5"} Standard HTML output of your last 5 likes.
+      # Maximum: 10
+      # {Likes width="200"} Standard HTML output of your likes with Audio and Video players scaled to 200-pixels wide.
+      # Scale images with CSS max-width or similar.
+      # {Likes summarize="100"} Standard HTML output of your likes with text summarize to 100-characters.
+      # Maximum: 250
+      class Likes < Base
+        # TODO: Implementation
+
+        def should_render?
+          false
+        end
+
+        def likes
+        end
+
+      end
+
+      require 'tumblargh/renderer/blocks/dates'
+      require 'tumblargh/renderer/blocks/notes'
+      require 'tumblargh/renderer/blocks/reblogs'
+      require 'tumblargh/renderer/blocks/navigation'
+
+
 
     end
   end

@@ -27,5 +27,11 @@ module Tumblargh
     class FontTag < CustomTag
     end
 
+    class TextTag < CustomTag
+    end
+
+    class LangTag < CustomTag
+    end
+    
   end
 end

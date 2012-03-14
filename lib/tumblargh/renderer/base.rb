@@ -11,6 +11,15 @@ module Tumblargh
         @context = context
       end
 
+      def context_post
+        real_post = context
+        while not real_post.is_a?(API::Post)
+          real_post = real_post.context
+        end
+
+        real_post
+      end
+
       def escape(str)
         CGI.escapeHTML(str)
       end
