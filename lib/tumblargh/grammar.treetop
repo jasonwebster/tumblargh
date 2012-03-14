@@ -12,11 +12,11 @@ grammar Tumblr
   end
 
   rule block_start
-    '{block:' [^\s}:;]+ '}' <Tumblargh::Node::BlockStart>
+    '{block:' [^\s}:;]+ '}' space? <Tumblargh::Node::BlockStart>
   end
 
   rule block_end
-    '{/block:' [^\s}]+ '}' <Tumblargh::Node::BlockEnd>
+    '{/block:' [^\s}]+ '}' space? <Tumblargh::Node::BlockEnd>
   end
 
   rule tag
@@ -31,6 +31,8 @@ grammar Tumblr
     [^{]+ <Tumblargh::Node::Literal>
   end
 
-
+  rule space
+    [\s]+
+  end
 
 end
