@@ -9,13 +9,20 @@ module Tumblargh
     autoload :Base,    'tumblargh/renderer/base'
 
     def self.factory(node, context)
+      args = []
       base = node.first.to_s
 
       if base == 'Block'
         block_name = node[1]
 
         if block_name[0..1] == 'If'
-          block_name = 'Boolean'
+          if block_name[2..4] ==  'Not'
+            args << block_name[5..block_name.size]
+            block_name = 'InverseBoolean'
+          else
+            args << block_name[2..block_name.size]
+            block_name = 'Boolean'
+          end
         end
 
         base = "Blocks::#{block_name}"
@@ -24,7 +31,7 @@ module Tumblargh
       klass_name = "Tumblargh::Renderer::#{base}"
       klass = klass_name.constantize
 
-      klass.new(node, context)
+      klass.new(node, context, *args)
     end
 
     # Document scoped tags live here
@@ -218,8 +225,21 @@ module Tumblargh
 
       # Meta-block for Appearance booleans, like {block:IfSomething}
       class Boolean < Base
+        attr_reader :variable
+
+        def initialize(node, context, *args)
+          @variable = args[0]
+          super(node, context)
+        end
+
         def should_render?
-          context
+          context.send(variable.underscore)
+        end
+      end
+
+      class InverseBoolean < Boolean
+        def should_render?
+          ! super
         end
       end
 
