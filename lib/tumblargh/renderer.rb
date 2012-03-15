@@ -89,6 +89,7 @@ module Tumblargh
 
         contextual_tag :post_id, :id
         contextual_tag :permalink, :post_url
+        contextual_tag :post_type, :type
         contextual_tag :title
         contextual_tag :caption
 
