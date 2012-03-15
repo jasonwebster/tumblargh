@@ -40,6 +40,11 @@ module Tumblargh
     class Document < Base
       # TAGS ----------
       contextual_tag :title
+      contextual_tag :description
+
+      def meta_description
+        escape(description)
+      end
 
       def favicon
         # TODO
@@ -118,13 +123,6 @@ module Tumblargh
         def should_render?
           !description.blank?
         end
-
-        contextual_tag :description
-
-        def metadescription
-          escape(description)
-        end
-
       end
 
       class NumberedPost < Base
