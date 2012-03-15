@@ -24,7 +24,7 @@ grammar Tumblr
   end
 
   rule tag_name
-    ([a-zA-Z0-9]+ ':'? [^\n:/{};\[\]\(\)]+)
+    ([a-zA-Z0-9]+ ':'? [^\n:/{};\[\]\(\)]*)
   end
 
   rule orphan
