@@ -11,6 +11,7 @@ Gem::Specification.new do |s|
   s.files        = `git ls-files`.split("\n")
   s.require_path = 'lib'
 
+  s.add_dependency('treetop')
   s.add_dependency('nokogiri')
   s.add_dependency('activesupport', '> 3.1')
 end
