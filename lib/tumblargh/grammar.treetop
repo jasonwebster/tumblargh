@@ -20,7 +20,11 @@ grammar Tumblr
   end
 
   rule tag
-    '{' ([a-zA-Z0-9] [^\n/{};\[\]\(\)]+) '}' <Tumblargh::Node::Tag>
+    '{' tag_name '}' <Tumblargh::Node::Tag>
+  end
+
+  rule tag_name
+    ([a-zA-Z0-9]+ ':'? [^\n:/{};\[\]\(\)]+)
   end
 
   rule orphan
