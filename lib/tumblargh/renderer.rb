@@ -1,6 +1,7 @@
 require 'cgi'
 
 require 'tumblargh/renderer/base'
+require 'tumblargh/renderer/document'
 require 'tumblargh/renderer/literal'
 require 'tumblargh/renderer/tag'
 
@@ -34,65 +35,6 @@ module Tumblargh
       klass = klass_name.constantize
 
       klass.new(node, context, *args)
-    end
-
-    # Document scoped tags live here
-    class Document < Base
-      # TAGS ----------
-      contextual_tag :title
-      contextual_tag :description
-
-      def meta_description
-        strip_html(description)
-      end
-
-      def favicon
-        # TODO
-        ''
-      end
-
-      def rss
-        "#{context.url}rss"
-      end
-
-      # Appearance options 
-      # http://www.tumblr.com/docs/en/custom_themes#appearance-options
-      def color(key)
-        'TODO CUSTOM COLOR'
-      end
-
-      def font(key)
-        'TODO CUSTOM FONT'
-      end
-
-      def image(key)
-        'TODO CUSTOM IMAGE'
-      end
-
-      def text(key)
-        'TODO CUSTOM TEXT'
-      end
-
-      # END TAGS ------
-
-      def render
-        res = node.map do |n|
-          renderer = Renderer.factory(n, self)
-
-          # TODO LOLOLOLOLOLOLOL
-          if renderer.class.name == 'Tumblargh::Renderer::Blocks::Posts'
-            context.posts.map do |p|
-              p.context = self
-              post_renderer = renderer.class.new(n, p)
-              post_renderer.render
-            end
-          else
-            renderer.render
-          end
-        end
-
-        res.flatten.join('')
-      end
     end
 
 
