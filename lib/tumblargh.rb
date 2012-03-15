@@ -17,7 +17,7 @@ module Tumblargh
 
     attr_accessor :config
 
-    def render(template_file, blog, config)
+    def render(template_file, blog)
       template = Parser.new(template_file)
       blog = API::Blog.new(blog)
       config = template.extract_config
