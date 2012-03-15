@@ -114,7 +114,7 @@ module Tumblargh
             renderer.render
           end
 
-          res.join('')
+          " #{res.join('')} "
         end
       end
 
