@@ -3,6 +3,9 @@ module Tumblargh
     module Blocks
 
       class PostNotes < Base
+        def should_render?
+          false
+        end
       end
 
       class NoteCount < Base

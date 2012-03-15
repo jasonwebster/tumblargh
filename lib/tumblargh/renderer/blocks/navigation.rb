@@ -56,6 +56,9 @@ module Tumblargh
 
       # Rendered if Submissions are enabled.
       class AskEnabled < Base
+        def should_render?
+          true
+        end
       end
     end
   end
