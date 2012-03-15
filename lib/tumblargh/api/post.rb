@@ -2,6 +2,10 @@ module Tumblargh
   module API
 
     class Post < Base
+      def date
+        @date ||= @attributes[:date].to_time
+      end
+
       def photo_url(size=500)
         return nil if (photos.nil? || photos.empty?)
 

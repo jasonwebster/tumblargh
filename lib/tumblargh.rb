@@ -1,5 +1,7 @@
 require 'active_support'
 require 'active_support/core_ext/hash/indifferent_access'
+require 'active_support/core_ext/string/conversions'
+require 'active_support/core_ext/time/conversions'
 require 'active_support/inflector'
 
 module Tumblargh

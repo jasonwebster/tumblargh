@@ -94,9 +94,6 @@ module Tumblargh
     module Blocks
       class Base < Renderer::Base
 
-        # def self.render_check=
-        # end
-
         def should_render?
           true
         end
