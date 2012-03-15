@@ -12,5 +12,5 @@ Gem::Specification.new do |s|
   s.require_path = 'lib'
 
   s.add_dependency('nokogiri')
-  s.add_dependency('activesupport', '~> 3.2')
+  s.add_dependency('activesupport', '> 3.1')
 end
