@@ -3,6 +3,22 @@ module Tumblargh
 
     class Base
 
+      class << self
+
+        # Define a simple tag on the block.
+        # Name being tag name, and optionally the  attibute/method to call 
+        # on the context. If the second argument is left off, it'll just use the tag name.
+        def contextual_tag(name, attribute=nil)
+          class_eval do 
+            define_method name do
+              context.send(attribute || name)
+            end
+          end
+        end
+
+      end
+
+
       attr_reader :node
       attr_accessor :context
 

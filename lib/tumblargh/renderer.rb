@@ -39,9 +39,7 @@ module Tumblargh
     # Document scoped tags live here
     class Document < Base
       # TAGS ----------
-      def title
-        context.title
-      end
+      contextual_tag :title
 
       def favicon
         # TODO
@@ -124,9 +122,7 @@ module Tumblargh
           !description.blank?
         end
 
-        def description
-          context.description
-        end
+        contextual_tag :description
 
         def metadescription
           escape(description)
@@ -154,21 +150,10 @@ module Tumblargh
       # they should be defined here
       class Posts < Base
 
-        def post_id
-          context.id
-        end
-
-        def permalink
-          context.post_url
-        end
-
-        def title
-          context.title
-        end
-
-        def caption
-          context.caption
-        end
+        contextual_tag :post_id, :id
+        contextual_tag :permalink, :post_url
+        contextual_tag :title
+        contextual_tag :caption
 
       end
 
@@ -300,13 +285,8 @@ module Tumblargh
           !source_title.nil?
         end
 
-        def source_url
-          context.source_url
-        end
-
-        def source_title
-          context.source_title
-        end
+        contextual_tag :source_url
+        contextual_tag :source_title
 
         # TODO: Impl.
         def black_logo_url
@@ -421,7 +401,6 @@ module Tumblargh
         end
 
       end
-
 
 
       # {block:Likes} {/block:Likes}  Rendered if you are sharing your likes.

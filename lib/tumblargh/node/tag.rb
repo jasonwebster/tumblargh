@@ -9,7 +9,9 @@ module Tumblargh
         if n.size == 2
           @type = "#{n.first.camelize.to_sym}Tag"
 
-          raise "There's an unclosed block somewhere..." if @type == 'BlockTag'
+          if @type == 'BlockTag'
+            raise "There's an unclosed block somewhere near `#{name}`"
+          end
 
           @type
         else
