@@ -23,8 +23,9 @@ module Tumblargh
       def fetch(path, query={})
         query.merge!(:api_key => api_key)
         url = "#{API_ROOT}#{path}?#{query.to_query}"
-        # puts "Fetching: #{url} ..."
-        ActiveSupport::JSON.decode( open(url).read )['response']
+        resp = open(url).read
+        # TODO raise on API errors.
+        ActiveSupport::JSON.decode( resp )['response']
       end
     end
 
