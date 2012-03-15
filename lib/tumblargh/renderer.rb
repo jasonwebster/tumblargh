@@ -43,7 +43,7 @@ module Tumblargh
       contextual_tag :description
 
       def meta_description
-        escape(description)
+        strip_html(description)
       end
 
       def favicon
