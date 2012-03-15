@@ -6,10 +6,11 @@ Gem::Specification.new do |s|
   s.description = ''
   s.authors     = ['Jason Webster']
   s.email       = 'jason@metalabdesign.com'
-  s.homepage    = 'http://rubygems.org/gems/hola'
+  s.homepage    = 'http://github.com/jasonwebster/tumblargh'
 
   s.files        = `git ls-files`.split("\n")
   s.require_path = 'lib'
 
+  s.add_dependency('nokogiri')
   s.add_dependency('activesupport', '~> 3.2')
 end

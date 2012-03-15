@@ -1,18 +1,28 @@
 require 'treetop'
 require 'open-uri'
+require 'nokogiri'
 
 module Tumblargh
 
   class Parser
-    Treetop.load(File.join(File.dirname(__FILE__), 'grammar.treetop'))
-    @@parser = TumblrParser.new
+    grammar_file = File.join(File.dirname(__FILE__), 'grammar')
 
-    def parse_uri(file)
-      parse open(file).read
+    if File.exists?("#{grammar_file}.rb")
+      require "#{grammar_file}.rb"
+    else
+      Treetop.load("#{grammar_file}.treetop")
     end
 
-    def parse(data)
-      structure = @@parser.parse(data)
+    @@parser = TumblrParser.new
+
+    def initialize(file)
+      @file = file
+    end
+
+    def parse
+      return @structure if @structure
+
+      structure = @@parser.parse(read)
 
       if(structure.nil?)
         puts @@parser.failure_reason
@@ -20,7 +30,23 @@ module Tumblargh
         raise Exception, "Parse error at offset: #{@@parser.index}"
       end
 
-      structure.to_tree
+      @structure = structure.to_tree
+    end
+
+    def read
+      @html ||= open(@file).read
+    end
+
+    def extract_config
+      config = {}.with_indifferent_access
+
+      doc = Nokogiri::HTML(read)
+      doc.css('meta[name*=":"]').each do |meta|
+        type, variable = meta['name'].split(':')
+        (config[type] ||= {})[variable] = meta['content']
+      end
+
+      config
     end
 
   end

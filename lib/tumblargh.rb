@@ -13,11 +13,18 @@ module Tumblargh
   autoload :Node,      'tumblargh/node'
   autoload :Renderer,  'tumblargh/renderer'
 
-  def self.render(template, blog)
-    tree = Parser.new.parse_uri(template)
-    blog = API::Blog.new(blog)
+  class << self
 
-    Renderer::Document.new(tree, blog).render
+    attr_accessor :config
+
+    def render(template_file, blog, config)
+      template = Parser.new(template_file)
+      blog = API::Blog.new(blog)
+      config = template.extract_config
+
+      Renderer::Document.new(template.parse, blog, config).render
+    end
+
   end
 
 end
