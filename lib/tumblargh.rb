@@ -25,6 +25,16 @@ module Tumblargh
       Renderer::Document.new(template.parse, blog, config).render
     end
 
+    def render_html(string, blog)
+      template = Parser.new
+      template.html = string
+
+      blog = API::Blog.new(blog)
+      config = template.extract_config
+
+      Renderer::Document.new(template.parse, blog, config).render
+    end
+
   end
 
 end
