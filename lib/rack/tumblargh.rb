@@ -4,7 +4,11 @@ module Rack
 
     def initialize(app, options={})
       @app = app
+      @options = options
+      @options[:blog] = 'staff.tumblr.com' if @options[:blog].nil?
     end
+
+    attr_reader :options
 
     def call(env)
       status, headers, response = @app.call(env)
@@ -32,7 +36,7 @@ module Rack
     end
 
     def render(content)
-      Tumblargh::render_html(content.first, 'willw.tumblr.com')
+      Tumblargh::render_html(content.first, options[:blog])
     end
 
   end
