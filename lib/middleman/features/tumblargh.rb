@@ -8,7 +8,7 @@ module Middleman::Features::Tumblargh
       options = {}
       app.set(:tumblr_options, options)
       app.extend(ClassMethods)
-      app.use(Rack::Tumblargh, options)
+      app.use(Rack::Tumblargh, options) unless app.build?
     end
 
     alias :included :registered
