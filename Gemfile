@@ -8,4 +8,6 @@ gem 'nokogiri'
 group :test do
   gem 'shoulda-context'
   gem 'rspec'
+  gem 'simplecov'
 end
+

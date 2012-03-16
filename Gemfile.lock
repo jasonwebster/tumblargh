@@ -26,6 +26,10 @@ GEM
       diff-lcs (~> 1.1.2)
     rspec-mocks (2.8.0)
     shoulda-context (1.0.0)
+    simplecov (0.6.1)
+      multi_json (~> 1.0)
+      simplecov-html (~> 0.5.3)
+    simplecov-html (0.5.3)
     treetop (1.4.10)
       polyglot
       polyglot (>= 0.3.1)
@@ -39,4 +43,5 @@ DEPENDENCIES
   rake
   rspec
   shoulda-context
+  simplecov
   treetop
