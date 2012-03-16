@@ -1,0 +1,1138 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<!-- Fluid Theme v1.0, June 22nd 2009, Metalab Design, http://www.metalabdesign.com -->
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en">
+<head>
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta name="viewport" content="width=905, user-scalable=yes" />
+	<meta name="Description" content="{MetaDescription}" />
+	<title>{block:SearchPage}{lang:Search results for SearchQuery} - {/block:SearchPage}{Title}</title>
+	<link rel="shortcut icon" href="{Favicon}" />
+    <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+    
+    <meta name="image:Background" content="">
+    <meta name="text:Disqus Shortname" content="" />
+    <meta name="if:Enable endless scrolling" content="1">
+    
+    <style type="text/css" media="screen">
+        /* Fluid Theme v1.0, June 22nd 2009, Metalab Design http://www.metalabdesign.com */
+
+        html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,dd,dl,dt,li,ol,ul,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;}table{border-collapse:collapse;border-spacing:0;}ol,ul{list-style:none;}q:before,q:after,blockquote:before,blockquote:after{content:"";}
+
+        * {
+            outline: none;
+            -moz-outline: none;
+        }
+
+        .clear{
+        	clear:both;
+        	height:1px;
+        	margin-bottom:-1px;
+        }
+
+        body{
+        	{block:IfNotBackgroundImage}
+        	    background: #000 url(http://static.tumblr.com/xsp9wak/wYkkloi0j/background-body-repeat.png) repeat-y top center;
+        	{/block:IfNotBackgroundImage}
+        	
+        	
+        	{block:IfBackgroundImage}
+        	    background: #000 url('{image:Background}') top left fixed;
+        	{/block:IfBackgroundImage}
+                    	
+        	color:#fff;
+        	font-size:11px;
+        	font-family:  "Lucida Grande", "Lucida Sans", "Lucida Sans Unicode", Geneva, Verdana, sans-serif ;
+        	text-shadow: #000 0px 1px 0px;
+        }
+
+        #wrap{
+        	width: 905px;
+        	padding-left:28px;
+        	padding-right:28px;
+        	margin:0 auto;
+        	position:relative;
+        	overflow:hidden;
+        	{block:IfNotBackgroundImage}
+        	    background: url(http://static.tumblr.com/xsp9wak/xAOkloi15/background-top.jpg) no-repeat top center; 
+        	{/block:IfNotBackgroundImage}
+        }
+
+
+        #title{
+        	height: 109px;
+        	background: url(http://static.tumblr.com/xsp9wak/Shikloi1h/background-title.png) repeat-x center top;
+        	float:left;
+        	position:relative;
+        	margin-left:68px;
+        	margin-top:40px;
+        	text-shadow: #000 0px 2px 0px;	
+
+        }
+
+        #title h1{
+        	font-size:42px;
+        	font-weight:bold;
+        	text-shadow: #fff 0px 1px 0px;
+        	margin-top:15px;
+        	padding-left:5px;
+        	padding-right:5px;
+
+        }
+
+        #title a{
+        	text-decoration:none;
+        	color:#fff;
+        	font-weight:bold;
+        	text-shadow: #fff 0px 1px 0px;
+        	padding:0;
+        	display:block;
+        }
+
+        #title b{
+        	height:93px;
+        	width:36px;
+        	position: absolute;
+        	top:0px;
+        }
+
+        #title b.left{
+        	background: url(http://static.tumblr.com/xsp9wak/Shikloi1h/background-title.png) top left;
+        	left:-36px;
+        }
+
+        #title b.right{
+        	background: url(http://static.tumblr.com/xsp9wak/Shikloi1h/background-title.png) top right;
+        	right:-36px;	
+        }
+
+
+        #container-top{
+        	width:873px;
+        	height:92px;
+        	background: url(http://static.tumblr.com/l3dtuf9/BTRl7q13c/background-main-top-bottom.png) top left;
+        	float:right;
+        	margin-top:-25px;
+        }
+
+        #container-bottom{
+        	width:873px;
+        	height:78px;
+        	background: url(http://static.tumblr.com/l3dtuf9/BTRl7q13c/background-main-top-bottom.png) no-repeat bottom left;
+        	display:block;
+        	float:right;
+        	margin-bottom:30px;
+        	position:relative;
+        }
+
+        #container-bottom a#pixelunion-link{
+        	position:absolute;
+        	top:5px;
+        	right:30px;
+        	width:230px;
+        	height:40px;
+        	text-indent:-9999em
+        }
+
+        #container-bottom #hidden_navinfo{display:none;}
+
+        #container-bottom #classic-pagination a{
+        	display:block;
+        	text-indent:-99999em;
+        	position:absolute;
+        }
+
+        #container-bottom #classic-pagination #next-page{
+        	background: url(http://static.tumblr.com/xsp9wak/0Hoklonlk/button-next.png) no-repeat top left;
+        	width:99px;
+        	height:50px;
+        	top:1px;
+        	left:460px;
+        }
+
+        #container-bottom #classic-pagination #prev-page{
+        	background: url(http://static.tumblr.com/xsp9wak/t0dklonr9/button-prev.png) no-repeat top left;
+        	width:98px;
+        	height:50px;
+        	top:1px;
+        	left:18px;
+        }
+
+        #container-bottom #load-more-posts{
+        	position:absolute;
+        	width:230px;
+        	height:50px;
+        	display:block;
+        	background: url(http://static.tumblr.com/xsp9wak/LoBkloiw9/background-load-more-posts.png) no-repeat bottom left;
+        	top:1px;
+        	left:17px;
+        	font-weight:bold;
+        	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;	
+        	font-size:16px;
+        	color:#fff;
+        	text-decoration:none;
+        	cursor:pointer;
+        	display:none;
+        }
+
+        #container-bottom #load-more-posts .spinner{
+        	width:32px;
+        	height:32px;
+        	background:url(http://static.tumblr.com/xsp9wak/8aUkloi38/new-spinner.gif) no-repeat top left;
+        	display:block;
+        	margin-left:20px;
+        	margin-top:9px;
+        	float:left;
+        }
+
+
+        #container-bottom #load-more-posts p{	
+        	margin-top:15px;
+        	float:right;
+        	padding-right:15px;
+        }	
+
+        #container{
+        	width:873px;
+        	background: url(http://static.tumblr.com/xsp9wak/kdbkloi3k/background-main-repeat.png) repeat-y top left;
+        	float:right;	
+        }
+
+        #content{
+        	margin-top:-50px;
+        	margin-left:30px;
+        }
+
+        #posts{
+        	float:left;
+        	width:525px;
+        }
+
+        #sidebar{
+        	float:right;
+        	margin-right:33px;
+        	margin-top:5px;
+        	width:268px;
+        	margin-bottom:40px;
+        }
+
+        #sidebar h2{
+        	font-size:18px;
+        	font-weight:bold;
+        	font-family:"Helvetica Neue", Helvetica, Arial, sans-serif;	
+        	width:268px;
+        	width:260px;
+        	height:33px;
+        	padding-left:8px;
+        	background: url(http://static.tumblr.com/xsp9wak/iPdkloi3z/background-sidebar-heading.png) no-repeat top left;
+        	line-height:34px;
+        }
+
+        #sidebar #user-portrait{
+        	width:64px;
+        	height:64px;
+        	padding:4px;
+        	padding-top:3px;
+        	padding-bottom:9px;
+        	background: url(http://static.tumblr.com/xsp9wak/zUwkloi5v/background-user-portrait.png) no-repeat top left;
+        	margin-top:11px;
+        	margin-right:9px;
+        	float:left;
+        }
+
+        #sidebar #about-text{
+        	margin-top:11px;
+        	line-height:18px;
+        	font-size:11px;
+        	display:block
+        }
+
+        #sidebar #about-text a{
+        	color:#fff;
+        }
+
+        #sidebar ul.links{
+        	margin-bottom:2px;
+        }
+
+        #sidebar ul.links li{
+        	background: url(http://static.tumblr.com/xsp9wak/XE1kloi66/icon-link-star.png) no-repeat center left;
+        }
+
+        #sidebar ul.links li span{
+        	background: url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) no-repeat bottom left;
+        	display:block;
+        }
+
+        #sidebar ul.links li.last span, #sidebar ul.links li:last-child span{
+        	background:none;
+        }
+
+        #sidebar ul.links li a{
+        	font-size:13px;
+        	font-weight:bold;
+        	color:#fff;
+        	width:240px;
+        	padding-left:26px;
+        	height:37px;
+        	line-height:35px;
+        	display:block;
+        	text-decoration:none;
+        	margin-left:1px;
+        }
+
+        #sidebar ul.links li a:hover{
+        	background: rgba(255,255,255,.05) url(http://static.tumblr.com/xsp9wak/fo1kloi6x/icon-link-arrow.png) no-repeat center right;
+        }
+
+        #sidebar ul#following{
+        	margin-left:5px;
+        }
+
+        #sidebar ul#following  li {
+        	float:left; 
+        	padding-top:12px;
+        	padding-left:6px;
+        	padding-right:6px;
+
+        }
+        #sidebar ul#following img{
+        	padding:4px;
+        	background: url(http://static.tumblr.com/xsp9wak/X10kloi7i/background-following-portrait.png) no-repeat center right;
+        }
+
+
+        /*GENERAL POST STYLES*/
+
+        .post.text .type{	background-position: 0 0; }
+        .post.photo .type{	background-position: 0 -39px; }
+        .post.quote .type{	background-position: 0 -78px; }
+        .post.link .type{	background-position: 0 -117px;} 
+        .post.chat .type{	background-position: 0 -156px; }
+        .post.audio .type{	background-position: 0 -195px; }
+        .post.video .type{	background-position: 0 -234px; }
+
+        .post .posttitle{
+        	background: url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) no-repeat left top;
+        	display:block;
+        	margin-bottom:10px;
+        }
+
+        .post .posttitle a:hover{
+        	text-decoration:none !important;
+        }
+
+        .post .postcontainer{
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat top left;
+        	width:509px;
+        	padding-left:20px;
+        	padding-right:20px;
+        	padding-top:14px;
+        	padding-bottom:14px;
+        	border:1px solid #000;
+        	margin-left:3px;
+        	position:relative;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        }
+
+        .post .postcontainer-bottom {
+        	width:509px;
+        	height:1px;
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat bottom left;
+        	position:absolute;
+        	bottom:0px;
+        	left:0px;
+        }
+
+
+        .post .posttitle h3{
+        	background: url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) no-repeat left bottom;
+        	padding-top:9px;
+        	padding-bottom:6px;
+        	padding-left:4px;
+        }
+
+
+        .description blockquote, .post.text blockquote{
+        	padding-left:1em;
+        	border-left:7px solid #414141;
+        	margin-top:.5em;
+        	margin-bottom:.5em;
+        	font-family:Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+        	font-style:italic;
+        	font-size:13px;
+        	margin-left:0px;
+        	padding-top:.25em;
+        }
+
+
+        .description blockquote blockquote, .post.text blockquote blockquote{
+        	border-left:6px solid #414141;
+        }
+
+        .description ul, .description ol, .post.text ul, .post.text ol{
+        	padding-left:2em;
+        	padding-top:.5em;
+        	padding-bottom:.5em;
+        }
+        .description ol, .post.text ol{
+        	list-style-type: decimal 
+        }
+
+        .description ul, .post.text ul{
+        	list-style-type: disc; 
+        }
+
+        .post {
+        	position:relative;
+        	margin-bottom:15px;	
+        	min-height:80px;
+        }
+
+        .post .posttitle h3{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:18px;
+        	font-weight:bold;
+        }
+
+        .description h1, .description h2, .description h3, .description h4, .description h5,
+        .description h1 a, .description h2 a , .description h3 a, .description h4 a, .description h5 a{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:14px;
+        	font-weight:bold;
+        	color:#fff;
+        	font-style:normal
+        }
+
+        .description h1 a, .description h2 a , .description h3 a, .description h4 a, .description h5 a{
+        	text-decoration:underline;
+        }
+
+        .post .posttitle h3 a{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:18px;
+        	font-weight:bold;
+        	color:#fff;
+        	text-decoration:none;
+
+        }
+
+        .post.text a, .post .description a{
+        	color:#08abe1;
+        	text-decoration:none;
+        }
+
+        .post.text a:hover, .post .description a:hover{
+        	text-decoration:underline;
+        }
+
+        .postinfo{
+        	position:absolute;
+        	display:block;
+        	top:0px;
+        	left:-63px;
+        	width:44px;
+        }
+
+        .notecount{
+        	display:block;
+        	width:41px;
+        	height:34px;
+        	padding-top:5px;
+        	background: url(http://static.tumblr.com/xsp9wak/mJ7kloias/post-icons.png) no-repeat bottom left;
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	text-shadow: #058cba 0px 1px 0px;
+        	text-align:center;
+        	color:#07294a !important;
+        	font-size:15px;
+        	font-weight:bold;
+        	text-decoration:none;
+        	margin-right:1px;
+        	margin-top:2px;
+        }
+
+        .notecount b{
+        	color:#07294a !important;
+        	font-size:15px;
+        	font-weight:bold;
+        	text-decoration:none;
+        		text-align:center;	
+        }
+
+        .notecount span{
+        	font-size:9px;	
+        	display:block;
+        	margin: 0 auto;
+        	font-weight:normal;
+        	text-align:center;
+        	line-height:9px;
+        }
+
+        .type{
+        	display:block;
+        	width:44px;
+        	height:39px;
+        	text-indent:-99999px;
+        	margin-bottom:4px;
+        	background: url(http://static.tumblr.com/xsp9wak/mJ7kloias/post-icons.png) no-repeat top left;	
+        }
+
+        .vialink {
+        	font-size:12px;
+        	font-weight:bold;
+        	color:#fff !important;
+        	border:1px solid #11191a;
+        	background: url(http://static.tumblr.com/xsp9wak/6aTkloibc/background-reblog-attribution.png);
+        	padding:5px;
+        	margin:5px 2px;
+        	margin-left:0;
+        	display:block;
+        	float:left;
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	text-decoration:none;
+        }
+
+        .vialink:hover{
+        	text-decoration:none;
+        }
+
+        .vialink span{
+        	background: url(http://static.tumblr.com/xsp9wak/IXOkloibo/icon-reblogged.png) no-repeat scroll 5px 6px;
+        	padding:5px 5px 5px 20px;
+        	font-weight:bold;
+        	color: #fff;
+        }
+
+        .post.video .description, .post.photo .description{
+        	margin-left:5px;
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat top left;
+        	width:479px;
+        	padding: 5px 15px;
+        	position:relative;
+        	overflow:hidden;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        }
+
+        .post.video .description-bottom, .post.photo .description-bottom{
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat  left bottom;
+        	bottom:0;
+        	height:1px;
+        	left:0;
+        	position:absolute;
+        	width:509px;
+        }
+
+        /* POST: TEXT */
+
+        .post.text{
+        	padding-left:10px;
+        	width:500px;
+        }
+
+        .post.text p{
+        	margin-bottom: .5em;
+        }
+
+        /* POST: AUDIO */
+
+        .post.audio h3{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:14px;
+        	font-weight:bold;
+        	margin-top:3px;
+        	margin-bottom:3px;
+        }
+
+        .post.audio .postcontainer{
+        	width:469px;
+        	overflow:hidden
+        }
+
+        .post.text p, .post .description{
+        	line-height:18px;
+        }
+
+        /* POST: PHOTO */
+
+        .post.photo .img-wrap{
+        	float:left;
+        	margin-bottom:9px;
+        	margin-left:4px;	
+        	position:relative;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        }
+
+        .post.photo .img-wrap .vialink{
+        	background:#000000 url(http://static.tumblr.com/xsp9wak/IXOkloibo/icon-reblogged.png) no-repeat scroll 5px 6px;
+        	bottom:6px;
+        	color:#FFFFFF;
+        	font-size:11px;
+        	padding:5px 5px 5px 20px;
+        	position:absolute;
+        	right:10px;
+        	text-shadow:0 1px 1px #000000;
+        	opacity:.8;
+        	z-index:30;
+        	display:none;
+        }
+
+        .post.photo .img-wrap:hover .vialink{
+        	display:block;
+        }
+
+        .post.photo .img-wrap .vialink:hover{
+        	text-decoration:underline;
+        }
+
+        .post.photo .img-wrap .zoomlink{
+        	background: url(http://static.tumblr.com/xsp9wak/ANGkloic5/icon-zoom.png) no-repeat top left;
+        	text-indent:-99999em;	
+        	display:none;
+        	font-size:11px;
+        	position:absolute;
+        	top:15px;
+        	right:15px;
+        	width:63px;
+        	height:25px;
+        	z-index:20;
+        }
+
+        .post.photo .img-wrap:hover .zoomlink{
+        	display:block
+        }
+
+        .post.photo img{
+        	padding:5px;
+        	float:left;
+        	display:block;
+        	background: #fff;
+        }
+
+        .post.photo img{
+        	display:block;
+        }
+
+        /* POST: VIDEO */
+
+        .post.video .vid-wrap{
+        	float:left;
+        	margin-bottom:9px;
+        	margin-left:4px;	
+        	position:relative;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	background: #fff;
+        	padding:5px;
+        	float:left;
+        	display:block;
+        }
+
+        /* POST: CHAT */
+        .post.chat .posttitle h3{
+        	background:none;
+        	padding-top:5px;
+        	padding-left:8px;
+        }
+
+        .post.chat .posttitle {
+         	background:none;
+         	margin-bottom:0;
+        }
+
+        ul.chat{
+        	border:1px solid #000;
+        	border-bottom:0;
+        	float:left;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	margin-left:3px;
+        }
+
+        ul.chat li{
+        	width:485px;
+        	padding:12px;
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat top left;
+        	border-bottom:1px solid #192526;
+        }
+
+        ul.chat span.name{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:14px;
+        	width:80px;
+        	float:left;
+        	text-align:right;
+        	font-weight:bold;
+        	padding-right:10px;
+        }
+
+        ul.chat span.message{
+        	line-height:14px;
+        }
+
+        .post.chat .vialink{
+        	margin-left:4px;
+        }
+        /* POST : LINK */
+
+        .post.link .postcontainer{
+        	padding:0;
+        	overflow:hidden;
+        	padding-bottom:5px;
+        }
+
+        .post.link .description{
+        	padding-left:20px;
+        	padding-right:60px;
+        	padding-bottom:10px;
+        }
+
+
+        .post.link a.postlink{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	font-size:22px;
+        	color:#fff;
+        	font-weight:bold;
+        	width:428px;
+        	padding-right:70px;
+        	display:block;
+        	padding-top:15px;
+        	padding-bottom:10px;
+        	padding-left:20px;
+        	text-decoration:none;
+
+        }
+
+        .post.link a.postlink span{
+        	background: url(http://static.tumblr.com/xsp9wak/PHAkloide/icon-linkpost-arrow.png) no-repeat top left;	
+        	width:35px;
+        	height:36px;	
+        	display:block;
+        	position:absolute;
+        	right:20px;
+        	top:50%;
+        	margin-top:-17px;
+        	opacity: .7;
+        	-moz-opacity: 0.7;
+        }
+
+        .post.link a.postlink:hover span{
+        	opacity: 1;
+        	-moz-opacity: 1;
+        }
+
+        .post.link .vialink{
+        	margin-left:20px;
+        }
+        /* POST: QUOTE */
+
+        .post.quote {
+        	font-size:18px;
+        	font-family:Georgia, Palatino, "Palatino Linotype", Times, "Times New Roman", serif;
+        	padding-left:10px;
+        	width:500px;
+        	background: url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) no-repeat left top;
+        	padding-top:20px;
+
+        }
+
+        .post.quote span.attribution{
+        	font-weight:bold;
+        	font-family:"Helvetica Neue" , Arial, Helvetica, sans-serif;
+        	font-size:14px;
+        	margin-right:10px;
+        	margin-top:15px;
+        	display:block;
+        	text-align:right;
+        	padding-bottom:10px;
+        }
+
+        .post.quote span.attribution a{
+        	color:#fff;
+        	text-decoration:underline;
+        }
+
+        .post.quote p {
+        	line-height:26px;
+        }
+
+        /* PERMALINK PAGES */
+
+        #post-meta{
+        	font-family:"Helvetica Neue", helvetica, Arial, sans-serif;	
+        	background:	url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) repeat-x top left;
+        	width:510px;
+        	margin-left:4px;
+        	font-size:18px;
+        }
+
+        #post-meta .permalink-notecount{
+        	float:left;
+        }
+        #post-meta .date{
+        	float:right;
+        	text-transform:capitalize;
+        }
+
+        #post-meta #permalink-postinfo{
+        	overflow:hidden;
+        	background:	url(http://static.tumblr.com/xsp9wak/1dikloi6g/hr.png) repeat-x bottom left;
+        	padding-top:8px;
+        	padding-bottom:7px;
+        	margin-bottom:12px;
+
+        }
+
+        #post-meta #permalink-postinfo .permalink-notecount{
+        	font-size:18px;
+        	font-weight:bold;
+        	padding-left:5px;
+        }
+
+        #post-meta #permalink-postinfo .permalink-notecount a{
+        	font-weight:bold;
+        }
+
+        #post-meta #permalink-postinfo .date{
+        	font-size:11px;
+        	padding-top:5px;
+        	padding-right:5px;
+        }
+
+        ol.notes{
+        	font-size:15px;
+        	margin-bottom:20px;
+
+        }
+
+        ol.notes li{
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat top left;
+        	width:481px;
+        	position:relative;
+        	overflow:hidden;
+        	padding-bottom:13px;
+        	margin-bottom:5px;
+        	border:1px solid #000;
+        	box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-webkit-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	-moz-box-shadow: 0px 2px 5px rgba(0,0,0, 0.5);
+        	padding-left:14px;
+        	padding-right:14px;
+        	padding-right:50px;
+        	width:445px;
+        	padding-top:14px;
+        	position:relative;
+        }
+
+        ol.notes li .li-bottom{
+        	background: url(http://static.tumblr.com/xsp9wak/Mwekloi8s/background-container.png) no-repeat bottom left;
+        	position:absolute;
+        	left:0;
+        	bottom:0;
+        	width:509px;
+        	height:1px;
+
+        }
+
+        ol.notes li .note-icon{
+        	position:absolute;
+        	right:15px;
+        	top:50%;
+        	margin-top:-16px;
+        	clear:both;
+        	width:32px;
+        	height:32px;
+        }
+
+
+        ol.notes li.like .note-icon{
+        	background:	url(http://static.tumblr.com/xsp9wak/1Jwkloidr/note-icons.png) no-repeat left 0;
+        }
+
+        ol.notes li.reblog  .note-icon{
+        	background:	url(http://static.tumblr.com/xsp9wak/1Jwkloidr/note-icons.png) no-repeat left -33px;
+        }
+
+        ol.notes li.answer  .note-icon{
+        	background:	url(http://static.tumblr.com/xsp9wak/1Jwkloidr/note-icons.png) no-repeat left -64px;
+        }
+
+        ol.notes li.fp  .note-icon{
+        	background:	url(http://static.tumblr.com/xsp9wak/1Jwkloidr/note-icons.png) no-repeat left -96px;
+        }
+
+        ol.notes li a img{
+        	padding:4px;
+        	background:	url(http://static.tumblr.com/xsp9wak/e3Lkloied/background-note-userpic.png) repeat-x top left;
+        	float:left;
+        	width:16px;
+        	height:16px;
+        }
+
+        ol.notes li a{
+        	font-weight:bold;
+        	text-decoration:none;
+        	color:#fff;
+        }
+
+        ol.notes li span.action{
+        	margin-left:10px;
+        	float:left;
+        }
+
+        ol.notes blockquote {
+        	font-size:13px;
+        	font-weight:normal !important;
+        	padding-left:35px;
+
+        }
+
+        ol.notes blockquote a{
+        	font-weight:normal !important;
+        }
+        
+        .regular_post_body img {
+            max-width: 100%;
+        }
+        
+        #disqus_thread #dsq-content #dsq-new-post.dsq-post-area h3,
+        #disqus_thread #dsq-content #dsq-new-post.dsq-post-area .dsq-dc-logo,
+        #disqus_thread #dsq-content td.dsq-request-user-name small,
+        #disqus_thread #dsq-content td.dsq-request-user-stats,
+        #disqus_thread #dsq-content .dsq-sharing-options,
+        #disqus_thread #dsq-content .dsq-comments-title,
+        #disqus_thread #dsq-content .dsq-options,
+        #disqus_thread #dsq-content .dsq-thread-settings,
+        #disqus_thread #dsq-content .dsq-comments-title,
+        #disqus_thread #dsq-content .dsq-comments-title h3 {
+            display: none;
+        }
+        
+        #disqus_thread a {
+            font-weight:bold;
+        	text-decoration:none;
+        	color:#fff;
+        }
+        
+    </style>
+	
+	<style type="text/css">{CustomCSS}</style>
+	<link rel="stylesheet" href="http://static.tumblr.com/xsp9wak/akkklnvyu/jquery.fancybox-tumblr.css" type="text/css" media="screen" title="no title" charset="utf-8"/>   
+   	<script src="http://static.tumblr.com/xsp9wak/rqFklb40z/jquery-1.3.2.min.js" type="text/javascript"></script>
+	<script src="http://static.tumblr.com/xsp9wak/WsCkloo8h/fluid.js" type="text/javascript"></script>
+	<script src="http://static.tumblr.com/xsp9wak/trzklb43b/jquery.fancybox-1.2.1.pack.js" type="text/javascript"></script>
+	<script src="http://static.tumblr.com/xsp9wak/6JXkli7dk/cufon-min.js" type="text/javascript"></script>
+	<script src="http://static.tumblr.com/xsp9wak/g6Wklb4aa/tg.js" type="text/javascript"></script>
+   	<script type="text/javascript">
+        {block:IfEnableEndlessScrolling}
+		    var ajax_loader = true;
+		{/block:IfEnableEndlessScrolling}
+		
+        {block:IfNotEnableEndlessScrolling}
+		    var ajax_loader = false;
+		{/block:IfNotEnableEndlessScrolling}
+	</script>
+</head>           
+<body>
+<div id="wrap">
+	<div id="title"><h1><a href="/">{Title}</a></h1><b class="left"></b><b class="right"></b></div>
+	<div id="container-top"></div>
+	<div id="container">
+	<div id="content">
+		<div id="posts"><!-- posts-start -->{block:Posts}	
+			{block:Text}<div class="post text">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Text}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+					{block:Title}<span class="posttitle"><h3><a href="{Permalink}">{Title}</a></h3></span>{/block:Title}
+					<div class="regular_post_body">{Body}</div>
+				{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+				<br class="clear" />
+			</div><!-- .post -->{/block:Text}
+			{block:Quote}<div class="post quote">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Quote}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+				<p>{Quote}</p>
+				{block:Source}<span class="attribution">&#8211; {Source}</span>{/block:Source}
+				{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+				<br class="clear" />
+			</div><!-- .post -->{/block:Quote}
+			 {block:Link}<div class="post link">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Link}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->	
+				<div class="postcontainer">
+					<a href="{URL}" class="postlink" {Target}>{Name} <span></span></a>
+						 {block:Description}<div class="description">
+							{Description}
+						</div><!-- .description --> {/block:Description}	
+						{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+						<div class="postcontainer-bottom"></div>					
+				</div><!-- .postcontainer -->
+				<br class="clear" />
+			</div><!-- .post -->{/block:Link}
+			{block:Photo}<div class="post photo">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Photo}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+				<div class="img-wrap">
+					{LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}"/>{LinkCloseTag}
+					{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external">Via {ReblogParentTitle}</a>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+					{block:HighRes} <a href="{PhotoURL-HighRes}?.jpg" class="zoomlink">{lang:Zoom}</a>{/block:HighRes}
+				</div>
+				<br class="clear" />
+				{block:Caption}<div class="description">
+						{Caption}	
+						<div class="description-bottom"></div>
+				</div><!-- .description -->{/block:Caption}
+				<br class="clear" />
+			</div><!-- .post -->{/block:Photo}
+			{block:Audio}<div class="post audio">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Audio}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+					<div class="postcontainer">
+						{AudioPlayerBlack}
+						{block:Caption}<div class="description">
+							{Caption}
+						</div><!-- .description -->{/block:Caption}
+						{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}	
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+						<div class="postcontainer-bottom"></div>
+					</div>
+				<br class="clear" />
+			</div><!-- .post -->{/block:Audio}	
+			{block:Video}<div class="post video">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Video}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+					<div class="vid-wrap">
+						{Video-500}
+					</div>
+					<br class="clear" />
+					{block:Caption}<div class="description">
+							{Caption}
+							<br class="clear" />
+							{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}		
+							<div class="description-bottom"></div>
+					</div><!-- .description -->{/block:Caption}	
+				<br class="clear" />
+			</div><!-- .post -->{/block:Video}
+            {block:Chat}<div class="post chat">
+				<div class="postinfo">
+					<a href="{permalink}" class="type">{lang:Chat}</a>
+					{block:IndexPage}{block:NoteCount}<a href="{permalink}#notes" class="notecount"><b>{NoteCount}</b><span style="text-transform:uppercase;">{lang:Notes}</span></a>{/block:NoteCount}{/block:IndexPage}
+				</div><!-- .postinfo -->
+					{block:Title}<span class="posttitle"><h3>{Title}</h3></span>{/block:Title}
+                    <ul class="chat">
+                     {block:Lines}
+                       <li class="{Alt} user_{UserNumber}">
+                           {block:Label} <span class="name">{Label}</span>{/block:Label}
+                            <span class="message">{Line} </span>                             
+                        </li>
+                     {/block:Lines}   
+                    </ul>
+				{block:RebloggedFrom}<a href="{ReblogParentURL}" class="vialink" rel="external"><span>Via {ReblogParentTitle}</a></span>{/block:RebloggedFrom}
+				{block:IfDisqusShortname}{block:Date}<a href="{Permalink}#disqus_thread" class="vialink"></a></span>{/block:Date}{block:IfDisqusShortname}
+				<br class="clear" />
+			</div><!-- .post -->{/block:Chat}
+			{block:PermalinkPage} 
+			<div id="post-meta">
+				<div id="permalink-postinfo">
+					{block:NoteCount}<span class="permalink-notecount"><a name="notes">{NoteCountWithLabel}</a></span>{/block:NoteCount}
+					{block:Date}<span class="date">{lang:Posted on DayOfWeek Month DayOfMonthWithSuffix}</span>{/block:Date}
+				</div>
+				{block:IfDisqusShortname}
+                <div class="separator secondary"></div>
+                <div id="disqus_thread" class="content"></div>
+                <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script><noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                {/block:IfDisqusShortname}
+				{block:PostNotes} 
+					{PostNotes}
+				{/block:PostNotes}
+			</div><!-- #post-meta -->
+			{/block:PermalinkPage}
+		{/block:Posts}<!-- posts-end --></div><!-- #posts -->
+		<div id="sidebar">
+		{block:Description}
+		<h2>{lang:About me}</h2>
+		<img src="{PortraitURL-64}" id="user-portrait" title="{Title}" alt="{title}"/>
+		<span id="about-text">{Description}</span>
+		<br class="clear" />
+		{/block:Description}
+
+
+
+        <ul class="links">
+            {block:AskEnabled}<li><span><a href="/ask">{AskLabel}</a></span></li>{/block:AskEnabled}{/block:AskEnabled}
+            {block:SubmissionsEnabled}<li><span><a href="/submit">{SubmitLabel}</a></span></li>{/block:SubmissionsEnabled}
+            {block:HasPages}
+            {block:Pages}<li><span><a href="{URL}">{Label}</a></span></li>{/block:Pages}
+            {/block:HasPages}
+        </ul>
+
+        
+
+		{block:Following} 
+		<h2>{lang:People I follow}</h2>
+		<ul id="following">
+		{block:Followed}<li><a href="{FollowedURL}" rel="external"><img src="{FollowedPortraitURL-30}" alt="{FollowedTitle}" /></a></li>{/block:Followed}
+		</ul>
+		{/block:Following}
+		</div>
+		</div><!-- #content -->
+	</div><!-- #container -->
+	<div id="container-bottom">
+		{block:IndexPage}
+			<div id="load-more-posts"><span class="spinner"></span><p>{lang:Load more posts}&hellip;</p></div>		
+			<div id="hidden_navinfo"><!-- this is necessary for ajax pagination --><span class="startpage">{CurrentPage}</span><span class="totalpages">{TotalPages}</span></div>
+			{block:Pagination} <div id="classic-pagination">
+				{block:PreviousPage} <a href="{PreviousPage}" id="prev-page">{lang:Previous page}</a>{/block:PreviousPage}
+				{block:NextPage} <a href="{NextPage}" id="next-page">{lang:Next page}</a>{/block:NextPage}
+			</div><!-- #classic-pagination -->{/block:Pagination}
+		{/block:IndexPage}
+		<a href="http://www.pixelunion.net/" id="pixelunion-link" rel="external">To Tumblr, Love PixelUnion</a>
+	</div>
+</div><!-- wrap -->
+{block:English}<script type="text/javascript"> Cufon.replace('#title h1');	Cufon.now(); </script>{/block:English}
+    
+{block:IfDisqusShortname}
+<script type="text/javascript">
+//<![CDATA[
+(function() {
+    var links = document.getElementsByTagName('a');
+    var query = '?';
+    for(var i = 0; i < links.length; i++) {
+    if(links[i].href.indexOf('#disqus_thread') >= 0) {
+        query += 'url' + i + '=' + encodeURIComponent(links[i].href) + '&';
+    }
+    }
+    document.write('<span><script charset="utf-8" type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/get_num_replies.js' + query + '"></' + 'script>');
+})();
+//]]>
+</script>
+{/block:IfDisqusShortname}
+</body>
+</html>

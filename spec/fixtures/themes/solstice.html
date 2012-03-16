@@ -1,0 +1,392 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+	"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+<head>
+  
+  <!-- 
+		        _|      _|_|      _|    _|    _|_|_|_|
+		        _|    _|    _|    _|  _|      _|
+		        _|    _|_|_|_|    _|_|        _|_|_|
+		  _|    _|    _|    _|    _|  _|      _|
+		  _|_|_|_|    _|    _|    _|    _|    _|_|_|_|
+		
+		  _|_|_|_|      _|_|      _|    _|    _|
+		  _|    _|    _|    _|    _|    _|    _|
+		  _|_|_|_|    _|_|_|_|    _|    _|    _|
+		  _|          _|    _|    _|    _|    _|
+		  _|          _|    _|      _|_|      _|_|_|_|
+		
+		SOLSTICE THEME http://solsticetheme.tumblr.com
+		by JAKE PAUL http://jakepaul.tumblr.com
+
+	-->
+  
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+	<meta name="viewport" content="width=850,maximum-scale=1.0" />
+	<meta name="description" content="{MetaDescription}" />
+
+	<title>{Title}{block:PostSummary} &mdash; {PostSummary}{/block:PostSummary}{block:SearchPage} &mdash; Search: {SearchQuery}{/block:SearchPage}</title>
+	<link rel="shortcut icon" href="{Favicon}" />
+  <link rel="alternate" type="application/rss+xml" href="{RSS}" />
+  
+  <meta name="image:Background" content="" />
+  <meta name="if:Show people I follow" content="1"/>
+  <meta name="if:Show my portrait photo" content="1"/>
+  <meta name="if:Show via links with reblogged posts" content="1">
+  <meta name="if:Use classic paging" content="0"/>
+  <meta name="if:Hide Disqus comment count if zero" content="0">
+  <meta name="text:Disqus Shortname" content="" />
+  <meta name="text:Google Analytics ID" content="" />
+  
+	<link rel="stylesheet" type="text/css" media="screen" href="http://static.tumblr.com/pvdmavg/pTrkuzeoc/reset.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://static.tumblr.com/pvdmavg/S3Xkv0xy6/fancybox-tumblr.css" />
+	<link rel="stylesheet" type="text/css" media="screen" href="http://static.tumblr.com/pvdmavg/KCnldy6xv/screen.css" />
+	<style type="text/css">
+	  body {
+	    {block:IfNotBackgroundImage}
+	      background: #14171f url(http://static.tumblr.com/pvdmavg/Pfykuzdki/h1_bg.png) repeat left top;
+	    {/block:IfNotBackgroundImage}
+	    {block:IfBackgroundImage}
+    	  background: #0e1112 url('{image:Background}') repeat fixed left top;
+    	{/block:IfBackgroundImage}
+	  }
+	  #page_outer {
+	    {block:IfNotBackgroundImage}
+	      background: url(http://static.tumblr.com/pvdmavg/HHOkuzdlf/h1_bg_top.png) repeat-x left top;
+	    {/block:IfNotBackgroundImage}
+    }
+    #header h1 {
+      {block:IfNotBackgroundImage}
+      	text-shadow: #0e1112 1px 1px 1px;
+      	-webkit-text-stroke:1px transparent;
+    	{/block:IfNotBackgroundImage}
+    }
+    #pages {
+      display: none;
+      {block:HasPages}display: block;{/block:HasPages}
+      {block:AskEnabled}display: block;{/block:AskEnabled}
+      {block:SubmissionsEnabled}display: block;{/block:SubmissionsEnabled}
+    }    
+    .notice .tag:before { content:'“'; }
+    .notice .tag:after { content:'”'; }
+	  {CustomCSS}
+	</style>
+	
+	<script type="text/javascript" src="http://static.tumblr.com/pvdmavg/k5dkuzkft/jquery-1.3.2.min.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/pvdmavg/v8Vkv0xxe/jquery.fancybox-1.2.6.pack.js"></script>
+	<script type="text/javascript" src="http://static.tumblr.com/pvdmavg/Xbsldy6x0/solstice.js"></script>
+  <script type="text/javascript">
+    {block:IfUseClassicPaging}
+    ajax_loader = false;
+    {/block:IfUseClassicPaging}
+    {block:IfNotUseClassicPaging}
+    ajax_loader = true;
+    {/block:IfNotUseClassicPaging}
+    {block:IfDisqusShortname}
+    disqus_shortname = "{text:Disqus Shortname}";
+    disqus_iframe_css = "http://static.tumblr.com/pvdmavg/OGLl0q9ii/iframe.css";
+    {/block:IfDisqusShortname}
+    {block:IfHideDisqusCommentCountIfZero}
+    hide_zero = true
+    {/block:IfHideDisqusCommentCountIfZero}
+    {block:IfNotHideDisqusCommentCountIfZero}
+    hide_zero = false
+    {block:IfNotHideDisqusCommentCountIfZero}
+  </script>
+	
+</head>
+
+<body>
+  <div id="page_outer">
+    <div id="page_inner">
+      <div id="header">
+        <h1><a href="/">{Title}</a></h1>
+      </div>
+      <div id="container_outer">
+        <div id="container_inner">
+          <div id="posts_outer"{block:PermalinkPage} class="permalink"{/block:PermalinkPage}>
+            
+            {block:TagPage}
+            <h2 class="notice">{lang:Posts tagged Tag 2}</h2>
+            {/block:TagPage}
+            
+            {block:SearchResults}
+            <h2 class="notice">{lang:Search results for SearchQuery}</h2>
+            {/block:SearchResults}
+            
+            {block:NoSearchResults}
+            <h2 class="notice">{lang:No results found}</h2>
+            {/block:NoSearchResults}
+            
+            <div id="posts_inner">
+            <!-- posts-start -->
+            {block:Posts}
+        		{block:Text}
+            <div class="post text">
+              {block:Date}
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Text}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {/block:Date}
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content{block:Date} narrow{/block:Date}">
+                {block:Title}<h3 class="title">{Title}</h3>{/block:Title}
+                {body}
+                <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Text}
+            
+            {block:Answer}
+            <div class="post answer">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Answer}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+                <div class="question">{Question}</div>
+                <div class="asker"><img src="{AskerPortraitURL-16}" width="16" height="16" class="avatar"><span>{lang:Asker asked}</span></div>
+                <div class="answer">{Answer}</div>
+                <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Answer}
+            
+            {block:Photo}
+            <div class="post photo">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Photo}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+              <div class="image">
+              {LinkOpenTag}<img src="{PhotoURL-500}" alt="{PhotoAlt}">{LinkCloseTag}
+              {block:HighRes}<a href="{PhotoURL-HighRes}?.jpg" class="zoom">{lang:Zoom}</a>{/block:HighRes}
+              </div>
+              {block:Caption}
+              <div class="description">
+                {Caption}
+              </div>
+              {/block:Caption}
+              <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Photo}
+            
+            {block:Quote}
+            <div class="post quote">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Quote}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+                <div class="quoted">{Quote}</div>
+                {block:Source}<div class="description">{Source}</div>{/block:Source}
+                <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Quote}
+
+            {block:Link}
+            <div class="post link">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Link}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+                <h3 class="title"><a href="{URL}" {Target}>{Name}</a></h3>
+                {block:Description}
+                <div class="description">
+                  {Description}
+                </div>
+                {/block:Description}
+                <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Link}
+
+            {block:Chat}
+            <div class="post chat">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Chat}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+              {block:Title}<h3 class="title">{Title}</h3>{/block:Title}
+              <ol class="lines">
+                {block:Lines}
+                <li class="{Alt} user_{UserNumber}">
+                    {block:Label}<strong>{Label}</strong>{/block:Label} {Line}
+                 </li>
+                {/block:Lines}
+              </ol>
+              <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Chat}
+
+            {block:Audio}
+            <div class="post audio">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Audio}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+                {block:AlbumArt}<div class="cover"><img src="{AlbumArtURL}" width="160"></div>{/block:AlbumArt}
+                <div class="player_wrap{block:AlbumArt} inline{/block:AlbumArt}">
+                  <div class="player">{AudioPlayerBlack}</div>
+                  {block:Artist}<div class="metadata">{Artist}{block:TrackName} &ndash; {TrackName}{/block:TrackName}</div>{/block:Artist}
+                </div>
+                {block:Caption}
+                  <div class="description">{Caption}</div>
+                {/block:Caption}
+                <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Audio}
+            
+            {block:Video}
+            <div class="post video">
+              <div class="info">
+                <a href="{Permalink}" class="type">{lang:Video}</a>
+                {block:IndexPage}{block:NoteCount}<a href="{Permalink}#notes" class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}{/block:IndexPage}
+              </div>
+              {block:IndexPage}<div class="date"><span></span>{lang:Posted TimeAgo}</div>{/block:IndexPage}
+              <div class="content">
+              <div class="embed">{Video-500}</div>
+              {block:Caption}
+                <div class="description">{Caption}</div>
+              {/block:Caption}
+              <div class="details">{block:IfShowViaLinksWithRebloggedPosts}{block:RebloggedFrom}<a href="{ReblogParentURL}" title="{ReblogParentTitle}" class="reblog">via {ReblogParentName}</a>{/block:RebloggedFrom}{/block:IfShowViaLinksWithRebloggedPosts}{block:Date}{block:IfDisqusShortname}<a href="{Permalink}#disqus_thread" class="disqus">{lang:View comments}</a>{/block:IfDisqusShortname}{/block:Date}</div>
+              </div>
+            </div>
+            {/block:Video}
+            
+            {block:PermalinkPage}
+              {block:Date}
+                <div class="meta">{lang:Posted on DayOfWeek Month DayOfMonth Year}. {block:HasTags}{lang:Tagged with}: {block:Tags}<a href="{TagURL}">{Tag}</a>{/block:Tags}{/block:HasTags}</div>
+              {/block:Date}
+            {/block:PermalinkPage}
+            
+            {block:PostNotes}
+              <div class="post noted">
+                <div class="info">
+                  {block:NoteCount}<a class="notes">{NoteCount}<br/>{lang:Notes}</a>{/block:NoteCount}
+                </div>
+                <div class="content">
+                  {PostNotes}
+                </div>
+              </div>
+            {/block:PostNotes}
+
+            {block:Permalink}
+              {block:Date}
+                {block:IfDisqusShortname}
+                  <div class="post commented">
+                    <div id="disqus_thread"></div>
+                    <link rel="stylesheet" href="http://static.tumblr.com/pvdmavg/3Egl0q9t8/disqus.css" type="text/css" media="screen">
+                    <script type="text/javascript" src="http://disqus.com/forums/{text:Disqus Shortname}/embed.js"></script>
+                    <noscript><a href="http://{text:Disqus Shortname}.disqus.com/?url=ref">{lang:View the discussion thread}</a></noscript>
+                    <p class="attribution">{lang:Comments powered by Disqus}</p>
+                  </div>
+                {/block:IfDisqusShortname}
+              {/block:Date}
+            {/block:Permalink}
+
+            {/block:Posts}
+            <div style="clear:both"></div>
+            <!-- posts-end -->
+            </div><!--/posts_inner-->
+            {block:Pagination}
+              <div id="pagination">
+                <div id="endless">
+                  <a id="more"><span class="spinner"><img src="http://static.tumblr.com/pvdmavg/h58kv1dih/spinner.gif"></span><span class="label">{lang:More}</span></a>
+                  <div id="hidden"><span class="startpage">{CurrentPage}</span><span class="totalpages">{TotalPages}</span></div>
+                </div>
+                <div id="classic">
+                  {block:NextPage}<a href="{NextPage}" id="older">{lang:Older posts}</a>{/block:NextPage}
+                  {block:PreviousPage}<a href="{PreviousPage}" id="newer">{lang:Newer posts}</a>{/block:PreviousPage}
+                </div>
+              </div>
+            {/block:Pagination}
+          </div><!--/posts_outer-->
+          <div id="sidebar">
+        		{block:Description}
+            <div class="section" id="about">
+              {block:IfShowMyPortraitPhoto}
+              <img src="{PortraitURL-64}" title="{Title}" alt="{Title}" class="picture">
+              {/block:IfShowMyPortraitPhoto}{Description}
+            </div>
+            {/block:Description}
+            <div class="section" id="pages">
+            {block:HasPages}{block:Pages}<a href="{URL}">{Label}</a>{/block:Pages}{/block:HasPages}
+            {block:AskEnabled}<a href="/ask">{AskLabel}</a>{/block:AskEnabled}
+            {block:SubmissionsEnabled}<a href="/submit">{SubmitLabel}</a>{/block:SubmissionsEnabled}
+            </div>
+            {block:IndexPage}
+            <div class="section" id="tumblr">
+              <form action="/search" method="get" id="search">
+                  <input type="text" name="q" id="query" value="{SearchQuery}"/>
+                  <input type="submit" value="" id="submit"/>
+              </form>
+              <a href="/archive" class="archive">{lang:Archive}</a>
+              <a href="{RSS}" class="rss">{lang:Subscribe}</a>
+            </div>
+            {block:Twitter}
+            <div class="section" id="twitter">
+              <h4 class="title">{lang:Tweets}</h4>
+              <ul id="tweets"></ul>
+              <a href="http://twitter.com/{TwitterUsername}" id="follow">{lang:Follow me}</a>
+            </div>
+            {/block:Twitter}
+            {block:IfShowPeopleIFollow}
+            {block:Following}
+            <div class="section" id="following">
+              <h4 class="title">{lang:Following}</h4>
+              <ul class="following">
+                {block:Followed}
+                <li><a href="{FollowedURL}" title="{FollowedTitle}">{FollowedName}</a></li>
+                {/block:Followed}
+              </ul>
+            </div>
+            {/block:Following}
+            {/block:IfShowPeopleIFollow}
+            {/block:IndexPage}
+            {block:PermalinkPagination}
+            <div class="section" id="permalink">
+            {block:PreviousPost}<a href="{PreviousPost}" class="previous">{lang:Previous}</a>{/block:PreviousPost}
+            {block:NextPost}<a href="{NextPost}" class="next">{lang:Next}</a>{/block:NextPost}
+            </div>
+            {/block:PermalinkPagination}
+          </div><!--/sidebar-->
+        </div><!--/container_inner-->
+        <div id="container_close"></div>
+      </div><!--/container_outer-->
+      <div style="clear:both"></div>
+    </div><!--/page_inner-->
+  </div><!--/page_outer-->
+  {block:Twitter}
+    <script type="text/javascript" src="/tweets.js"></script>
+  {/block:Twitter}
+  {block:IfGoogleAnalyticsID}
+  <script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', '{text:Google Analytics ID}']);
+    _gaq.push(['_trackPageview']);
+    (function() {
+      var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+      ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+      var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+    })();
+  </script>
+  {/block:IfGoogleAnalyticsID}
+</body>
+</html>
