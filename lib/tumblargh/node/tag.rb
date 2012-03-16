@@ -10,7 +10,7 @@ module Tumblargh
           @type = "#{n.first.camelize.to_sym}Tag"
 
           if @type == 'BlockTag'
-            raise "There's an unclosed block somewhere near `#{name}`"
+            raise ParserError, "There's an unclosed block somewhere near `#{name}`"
           end
 
           @type

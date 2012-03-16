@@ -18,7 +18,7 @@ module Tumblargh
           if e.respond_to?(:to_tree)
             ary << e.to_tree
           else
-            raise "Unknown node type '#{e.class.name}' in Block '#{name}'"
+            raise ParserError, "Unknown node type '#{e.class.name}' in Block '#{name}'"
           end
         end
 

@@ -53,7 +53,7 @@ module Tumblargh
       if(structure.nil?)
         puts @@parser.failure_reason
         puts "#{@@parser.failure_line}:#{@@parser.failure_column}"
-        raise Exception, "Parse error at offset: #{@@parser.index}"
+        raise ParserError, "Parse error at offset: #{@@parser.index}"
       end
 
       @tree = structure.to_tree
@@ -80,7 +80,9 @@ module Tumblargh
 
       opts
     end
+  end
 
+  class ParserError < StandardError
   end
 
 end
