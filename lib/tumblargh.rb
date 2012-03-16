@@ -17,22 +17,23 @@ module Tumblargh
 
     attr_accessor :config
 
-    def render(template_file, blog)
-      template = Parser.new(template_file)
-      blog = API::Blog.new(blog)
-      config = template.extract_config
-
-      Renderer::Document.new(template.parse, blog, config).render
+    def render_file(file, blog)
+      render(:file, file, blog)
     end
 
     def render_html(string, blog)
-      template = Parser.new
-      template.html = string
+      render(:html, string, blog)
+    end
 
+    private
+
+    def render(setter, theme, blog)
+      parser = Parser.new
+      parser.send(setter, theme)
       blog = API::Blog.new(blog)
-      config = template.extract_config
+      config = parser.extract_config
 
-      Renderer::Document.new(template.parse, blog, config).render
+      Renderer::Document.new(parser.parse, blog, config).render
     end
 
   end
