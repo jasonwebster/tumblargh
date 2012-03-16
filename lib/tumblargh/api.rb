@@ -15,7 +15,8 @@ module Tumblargh
     autoload :Blog,      'tumblargh/api/blog'
     autoload :User,      'tumblargh/api/user'
     autoload :Post,      'tumblargh/api/post'
-  
+    autoload :Tag,       'tumblargh/api/tag'
+
     class << self
 
       attr_accessor :api_key

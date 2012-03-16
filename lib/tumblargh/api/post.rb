@@ -31,6 +31,14 @@ module Tumblargh
         res.empty? ? nil : res.first[:embed_code]
       end
 
+      def tags
+        return @tags if defined?(@tags)
+        
+        @tags = @attributes[:tags].map do |t|
+          Tag.new({ :name => t })
+        end
+      end
+
     end
 
   end
