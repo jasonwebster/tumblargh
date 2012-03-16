@@ -28,12 +28,15 @@ module Tumblargh
     private
 
     def render(setter, theme, blog)
-      parser = Parser.new
-      parser.send(setter, theme)
-      blog = API::Blog.new(blog)
-      config = parser.extract_config
+      if API.api_key.nil? or not defined?(API.api_key)
+        raise "Need to specify a Tumblr API key for Tumblargh"
+      end
 
-      Renderer::Document.new(parser.parse, blog, config).render
+      parser = Parser.new
+      parser.send("#{setter}=", theme)
+      blog = API::Blog.new(blog)
+
+      Renderer::Document.new(parser.tree, blog, parser.options).render
     end
 
   end

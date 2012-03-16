@@ -24,7 +24,7 @@ module Tumblargh
     def file=(file)
       @file = file
       @html = nil
-      @structure = nil
+      @tree = nil
       @config = nil
     end
 
@@ -37,9 +37,17 @@ module Tumblargh
       @html ||= open(@file).read
     end
 
-    def parse
-      return @structure if @structure
+    def tree
+      @tree ||= parse
+    end
 
+    def options
+      @options ||= extract_options
+    end
+
+    private
+
+    def parse
       structure = @@parser.parse(html)
 
       if(structure.nil?)
@@ -48,19 +56,29 @@ module Tumblargh
         raise Exception, "Parse error at offset: #{@@parser.index}"
       end
 
-      @structure = structure.to_tree
+      @tree = structure.to_tree
     end
 
-    def extract_config
-      config = {}.with_indifferent_access
+    def extract_options
+      opts = {}.with_indifferent_access
 
       doc = Nokogiri::HTML(html)
       doc.css('meta[name*=":"]').each do |meta|
         type, variable = meta['name'].split(':')
-        (config[type] ||= {})[variable] = meta['content']
+        default = meta['content']
+
+        default = case type
+        when "if"
+          default == "1" ? true : false
+        else
+          default
+        end
+
+        opts[type] ||= {}
+        opts[type][variable] = default
       end
 
-      config
+      opts
     end
 
   end
