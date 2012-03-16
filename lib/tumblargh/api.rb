@@ -3,6 +3,7 @@ require 'active_support/core_ext/hash/indifferent_access'
 require 'active_support/core_ext/object/to_query'
 require 'active_support/json'
 
+require 'api_cache'
 require 'open-uri'
 
 module Tumblargh
@@ -23,7 +24,11 @@ module Tumblargh
       def fetch(path, query={})
         query.merge!(:api_key => api_key)
         url = "#{API_ROOT}#{path}?#{query.to_query}"
-        resp = open(url).read
+
+        resp = APICache.get(url) do
+          open(url).read
+        end
+
         # TODO raise on API errors.
         ActiveSupport::JSON.decode( resp )['response']
       end

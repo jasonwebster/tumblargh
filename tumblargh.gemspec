@@ -14,4 +14,5 @@ Gem::Specification.new do |s|
   s.add_dependency('treetop')
   s.add_dependency('nokogiri')
   s.add_dependency('activesupport', '> 3.1')
+  s.add_dependency('api_cache')
 end
