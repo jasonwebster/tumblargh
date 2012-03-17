@@ -8,7 +8,14 @@ module Middleman::Features::Tumblargh
       options = {}
       app.set(:tumblr_options, options)
       app.extend(ClassMethods)
-      app.use(Rack::Tumblargh, options) unless app.build?
+
+      unless app.build?
+        app.use(Rack::Tumblargh, options) 
+
+        app.get '/tweets.js' do
+          redirect "http://#{app.tumblr_options[:blog]}/tweets.js"
+        end
+      end
     end
 
     alias :included :registered
