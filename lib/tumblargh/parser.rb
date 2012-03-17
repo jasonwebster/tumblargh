@@ -24,6 +24,7 @@ module Tumblargh
     def file=(file)
       @file = file
       @html = nil
+      @structure = nil
       @tree = nil
       @config = nil
     end
@@ -45,18 +46,23 @@ module Tumblargh
       @options ||= extract_options
     end
 
+    def to_s
+      parse unless @structure
+      @structure.to_s
+    end
+
     private
 
     def parse
-      structure = @@parser.parse(html)
+      @structure = @@parser.parse(html)
 
-      if(structure.nil?)
+      if(@structure.nil?)
         puts @@parser.failure_reason
         puts "#{@@parser.failure_line}:#{@@parser.failure_column}"
         raise ParserError, "Parse error at offset: #{@@parser.index}"
       end
 
-      @tree = structure.to_tree
+      @tree = @structure.to_tree
     end
 
     def extract_options

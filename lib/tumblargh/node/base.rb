@@ -8,7 +8,11 @@ module Tumblargh
       end
 
       def to_tree
-        return [type, text_value]
+        [type, text_value]
+      end
+
+      def to_s
+        text_value
       end
 
     end
