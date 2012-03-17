@@ -46,7 +46,7 @@
       end
 
       def custom_value_for_type(type, key)
-        config[type][key] rescue "No config for #{type} #{key}"
+        config[type][key] rescue raise "No appearance option for #{type}:#{key}"
       end
 
       # END TAGS ------
