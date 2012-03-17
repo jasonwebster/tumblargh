@@ -1,3 +1,5 @@
+# require 'action_view/helpers/date_helper'
+
 module Tumblargh
   module Renderer
     module Blocks
@@ -37,6 +39,11 @@ module Tumblargh
 
         def short_year
           year.to_s[2..4]
+        end
+
+        def time_ago
+          # ActionView::Helpers::DateHelper::time_ago_in_words(date)
+          "1 day ago"
         end
 
       end
