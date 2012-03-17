@@ -36,8 +36,12 @@ module Tumblargh
         real_post
       end
 
-      def escape(str)
+      def escape_html(str)
         CGI.escapeHTML(str)
+      end
+
+      def escape_url(url)
+        CGI.escape(url)
       end
 
       def strip_html(str)
