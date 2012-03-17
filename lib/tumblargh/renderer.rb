@@ -39,27 +39,8 @@ module Tumblargh
 
 
     module Blocks
-      class Base < Renderer::Base
 
-        def should_render?
-          true
-        end
-
-        def render
-          return '' unless should_render?
-
-          sig, type, *nodes = node
-
-          res = nodes.map do |n|
-            # puts "#{self.class.name} --> #{self.context.class.name}"
-            renderer = Renderer.factory(n, self)
-            renderer.render
-          end
-
-          " #{res.join('')} "
-        end
-      end
-
+      require 'tumblargh/renderer/blocks/base'
 
       class Description < Base
         def should_render?
@@ -92,6 +73,27 @@ module Tumblargh
         contextual_tag :post_type, :type
         contextual_tag :title
         contextual_tag :caption
+
+        def render
+          sig, type, *nodes = node
+
+          res = nodes.map do |n|
+            renderer = Renderer.factory(n, self)
+
+            # TODO LOLOLOLOLOLOLOL
+            if renderer.class.name == 'Tumblargh::Renderer::Blocks::Tags'
+              context.posts.tags.map do |t|
+                t.context = self
+                post_renderer = renderer.class.new(n, t)
+                post_renderer.render
+              end
+            else
+              renderer.render
+            end
+          end
+
+          res.flatten.join('')
+        end
 
       end
 
@@ -258,15 +260,19 @@ module Tumblargh
       # TODO: Render for each tag in a post
       class Tags < Base
         def tag
+          context.name
         end
 
         def url_safe_tag
+          escape_url(tag)
         end
 
         def tag_url
+          "/tagged/#{url_safe}"
         end
 
         def tag_url_chrono
+          "#{tag_url}/chrono"
         end
       end
 

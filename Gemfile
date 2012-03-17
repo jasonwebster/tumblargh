@@ -1,6 +1,6 @@
 source "http://rubygems.org"
 
-gem 'activeresource'
+gem 'activesupport'
 gem 'rake'
 gem 'treetop'
 gem 'nokogiri'

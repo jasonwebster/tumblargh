@@ -1,6 +1,5 @@
 require 'spec_helper'
 
-require 'tumblargh'
 
 describe Tumblargh::Parser do
 
