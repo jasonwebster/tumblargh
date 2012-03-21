@@ -13,9 +13,11 @@ module Tumblargh
 
     autoload :Base,      'tumblargh/api/base'
     autoload :Blog,      'tumblargh/api/blog'
-    autoload :User,      'tumblargh/api/user'
+    autoload :Note,      'tumblargh/api/note'
     autoload :Post,      'tumblargh/api/post'
     autoload :Tag,       'tumblargh/api/tag'
+    autoload :User,      'tumblargh/api/user'
+
 
     class << self
 

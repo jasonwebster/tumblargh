@@ -8,6 +8,10 @@ module Tumblargh
         fetch
       end
 
+      def domain
+        @url
+      end
+
       def fetch
         self.attributes = API.fetch("#{@url}/info")['blog']
       end
@@ -16,15 +20,10 @@ module Tumblargh
         resp['blog']
       end
 
-      # Override method_missing so this does not propagate
-      def title
-        @attributes[:title]
-      end
-
       def posts
         return @posts if defined?(@posts)
         @posts = API.fetch("#{@url}/posts")['posts'].map do |p|
-          Post.new p
+          Post.new(p, self)
         end
       end
 

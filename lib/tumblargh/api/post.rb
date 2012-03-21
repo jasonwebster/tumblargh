@@ -2,6 +2,16 @@ module Tumblargh
   module API
 
     class Post < Base
+      def initialize(attrs, blog)
+        @blog = blog
+        super(attrs)
+      end
+
+      # Override method_missing so this does not propagate
+      def title
+        @attributes[:title]
+      end
+
       def date
         @date ||= @attributes[:date].to_time
       end
@@ -36,6 +46,16 @@ module Tumblargh
         
         @tags = @attributes[:tags].map do |t|
           Tag.new({ :name => t })
+        end
+      end
+
+      def notes
+        return @notes if defined?(@notes)
+
+        path = "#{@blog.domain}/posts"
+        query = { :id => id, :notes_info => 'true' }
+        @notes = API.fetch(path, query)['posts'][0]['notes'].map do |n|
+          Note.new(n)
         end
       end
 

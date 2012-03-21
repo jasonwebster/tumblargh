@@ -79,6 +79,16 @@ module Tumblargh
           url.gsub(/^http:\/\/[^\/]+/, '')
         end
 
+        # TODO: This should not be necessary
+        def permalink?
+          context.context.permalink?
+        end
+
+        def post_notes_url
+          # http://bikiniatoll.tumblr.com/notes/1377511430/vqS0xw8sm
+          "/notes/#{context.id}/"
+        end
+
         def render
           sig, type, *nodes = node
 
@@ -285,14 +295,14 @@ module Tumblargh
       # Rendered on index (post) pages.
       class IndexPage < Base
         def should_render?
-          ! permalink?
+          ! context.permalink?
         end
       end
 
       # Rendered on post permalink pages.
       class PermalinkPage < Base
         def should_render?
-          permalink?
+          context.permalink?
         end
       end
 
