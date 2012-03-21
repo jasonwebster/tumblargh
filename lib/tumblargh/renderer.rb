@@ -69,10 +69,15 @@ module Tumblargh
       class Posts < Base
 
         contextual_tag :post_id, :id
-        contextual_tag :permalink, :post_url
         contextual_tag :post_type, :type
         contextual_tag :title
         contextual_tag :caption
+
+        def permalink
+          url = context.post_url
+          
+          url.gsub(/^http:\/\/[^\/]+/, '')
+        end
 
         def render
           sig, type, *nodes = node
