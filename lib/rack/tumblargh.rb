@@ -14,9 +14,13 @@ module Rack
       status, headers, response = @app.call(env)
 
       if should_parse?(status, headers)
+
+        content = response.respond_to?(:body) ? response.body : response
+        render_opts = { :permalink => permalink?(env['PATH_INFO']) }
+
         headers.delete('Content-Length')
         response = Rack::Response.new(
-          render(response.respond_to?(:body) ? response.body : response),
+          render(content, render_opts),
           status,
           headers
         )
@@ -29,14 +33,18 @@ module Rack
 
   private
 
+    def permalink?(path)
+      !! path.match(/^\/post\/\d+/)
+    end
+
     def should_parse?(status, headers)
       status == 200 && 
       headers["Content-Type"] && 
       headers["Content-Type"].include?("text/html")
     end
 
-    def render(content)
-      Tumblargh::render_html(content.first, options[:blog])
+    def render(content, opts)
+      Tumblargh::render_html(content.first, options[:blog], opts)
     end
 
   end

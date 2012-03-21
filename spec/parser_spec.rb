@@ -57,8 +57,7 @@ describe Tumblargh::Parser do
           display:block;
         }
 
-        #title b {
-          height:93px;
+        #title b {height:93px;
           width:36px;
           position: absolute;
           top:0px;

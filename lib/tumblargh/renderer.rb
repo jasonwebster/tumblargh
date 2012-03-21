@@ -284,12 +284,15 @@ module Tumblargh
 
       # Rendered on index (post) pages.
       class IndexPage < Base
+        def should_render?
+          ! permalink?
+        end
       end
 
       # Rendered on post permalink pages.
       class PermalinkPage < Base
         def should_render?
-          false
+          permalink?
         end
       end
 

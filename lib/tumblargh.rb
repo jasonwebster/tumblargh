@@ -17,17 +17,17 @@ module Tumblargh
 
     attr_accessor :config
 
-    def render_file(file, blog)
+    def render_file(file, blog, options={})
       render(:file, file, blog)
     end
 
-    def render_html(string, blog)
-      render(:html, string, blog)
+    def render_html(string, blog, options={})
+      render(:html, string, blog, options)
     end
 
     private
 
-    def render(setter, theme, blog)
+    def render(setter, theme, blog, options)
       if API.api_key.nil? or not defined?(API.api_key)
         raise "Need to specify a Tumblr API key for Tumblargh"
       end
@@ -36,7 +36,9 @@ module Tumblargh
       parser.send("#{setter}=", theme)
       blog = API::Blog.new(blog)
 
-      Renderer::Document.new(parser.tree, blog, parser.options).render
+      options = parser.options.merge(options)
+
+      Renderer::Document.new(parser.tree, blog, options).render
     end
 
   end

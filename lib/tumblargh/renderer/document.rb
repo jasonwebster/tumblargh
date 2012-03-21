@@ -10,6 +10,11 @@
         super(node, context)
       end
 
+      # Are we rendering a permalink page?
+      def permalink?
+        @config[:permalink] == true
+      end
+
       # TAGS ----------
       contextual_tag :title
       contextual_tag :description
@@ -57,7 +62,9 @@
 
           # TODO LOLOLOLOLOLOLOL
           if renderer.class.name == 'Tumblargh::Renderer::Blocks::Posts'
-            context.posts.map do |p|
+            posts = permalink? ? [context.posts.first] : context.posts
+
+            posts.map do |p|
               p.context = self
               post_renderer = renderer.class.new(n, p)
               post_renderer.render

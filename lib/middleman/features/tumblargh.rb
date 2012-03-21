@@ -10,11 +10,13 @@ module Middleman::Features::Tumblargh
       app.extend(ClassMethods)
 
       unless app.build?
-        app.use(Rack::Tumblargh, options) 
+        app.use(Rack::Tumblargh, options)
 
         app.get '/tweets.js' do
           redirect "http://#{app.tumblr_options[:blog]}/tweets.js"
         end
+
+        app.page '/post/:id*', :proxy => '/index.html'
       end
     end
 
