@@ -89,6 +89,10 @@ module Tumblargh
           "/notes/#{context.id}/"
         end
 
+        def reblog_url
+          "/reblog/#{context.reblog_key}"
+        end
+
         def render
           sig, type, *nodes = node
 
