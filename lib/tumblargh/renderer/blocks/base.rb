@@ -3,7 +3,18 @@ module Tumblargh
     module Blocks
       class Base < Renderer::Base
 
+        class << self
+          attr_accessor :should_render_if
+          alias_method :should_render_unless_blank, :should_render_if=
+        end
+
+
         def should_render?
+          if defined?(@should_render_if)
+            val = send(@should_render_if)
+            return !(val || val.nil? || val.blank?)
+          end
+
           true
         end
 
