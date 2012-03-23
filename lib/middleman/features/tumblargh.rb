@@ -14,7 +14,7 @@ module Middleman::Features::Tumblargh
 
         ['/tweets.js', %r{/api.*}].each do |route|
           app.get route do
-            redirect "http://#{app.tumblr_options[:blog]}#{request.path}"
+            redirect "http://#{app.tumblr_options[:blog]}#{request.path}?#{request.query_string}"
           end
         end
 
