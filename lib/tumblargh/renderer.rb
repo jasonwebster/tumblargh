@@ -181,19 +181,6 @@ module Tumblargh
       class Link < Post
       end
 
-      class Answer < Post
-        def question
-        end
-
-        def answer
-        end
-
-        def asker
-        end
-
-        def asker_portrait_url(size)
-        end
-      end
 
       # Meta-block for Appearance booleans, like {block:IfSomething}
       class Boolean < Base
