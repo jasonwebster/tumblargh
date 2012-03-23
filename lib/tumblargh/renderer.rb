@@ -375,15 +375,13 @@ module Tumblargh
 
       end
 
-
+      require 'tumblargh/renderer/blocks/answer'
       require 'tumblargh/renderer/blocks/audio'
       require 'tumblargh/renderer/blocks/dates'
       require 'tumblargh/renderer/blocks/notes'
       require 'tumblargh/renderer/blocks/reblogs'
       require 'tumblargh/renderer/blocks/navigation'
       
-
-
 
     end
   end
