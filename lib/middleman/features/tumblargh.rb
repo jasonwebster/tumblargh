@@ -12,8 +12,10 @@ module Middleman::Features::Tumblargh
       unless app.build?
         app.use(Rack::Tumblargh, options)
 
-        app.get '/tweets.js' do
-          redirect "http://#{app.tumblr_options[:blog]}/tweets.js"
+        ['/tweets.js', %r{/api.*}].each do |route|
+          app.get route do
+            redirect "http://#{app.tumblr_options[:blog]}#{request.path}"
+          end
         end
 
         app.page '/post/:id*', :proxy => '/index.html'
