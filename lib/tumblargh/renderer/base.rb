@@ -18,7 +18,6 @@ module Tumblargh
 
       end
 
-
       attr_reader :node
       attr_accessor :context
 

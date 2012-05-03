@@ -101,10 +101,16 @@ module Tumblargh
 
             # TODO LOLOLOLOLOLOLOL
             if renderer.class.name == 'Tumblargh::Renderer::Blocks::Tags'
-              context.posts.tags.map do |t|
+              context_post.tags.map do |t|
                 t.context = self
-                post_renderer = renderer.class.new(n, t)
-                post_renderer.render
+                tag_renderer = renderer.class.new(n, t)
+                tag_renderer.render
+              end
+            elsif renderer.class.name == 'Tumblargh::Renderer::Blocks::Lines'
+              context_post.dialogue.map do |t|
+                t.context = self
+                line_renderer = renderer.class.new(n, t)
+                line_renderer.render
               end
             else
               renderer.render
@@ -377,6 +383,7 @@ module Tumblargh
 
       require 'tumblargh/renderer/blocks/answer'
       require 'tumblargh/renderer/blocks/audio'
+      require 'tumblargh/renderer/blocks/chat'
       require 'tumblargh/renderer/blocks/dates'
       require 'tumblargh/renderer/blocks/notes'
       require 'tumblargh/renderer/blocks/reblogs'

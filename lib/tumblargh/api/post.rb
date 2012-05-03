@@ -42,9 +42,7 @@ module Tumblargh
       end
 
       def tags
-        return @tags if defined?(@tags)
-        
-        @tags = @attributes[:tags].map do |t|
+        @tags ||= @attributes[:tags].map do |t|
           Tag.new({ :name => t })
         end
       end
@@ -56,6 +54,12 @@ module Tumblargh
         query = { :id => id, :notes_info => 'true' }
         @notes = API.fetch(path, query)['posts'][0]['notes'].map do |n|
           Note.new(n)
+        end
+      end
+
+      def dialogue
+        @dialogue ||= @attributes[:dialogue].map do |t|
+          Base.new(t)
         end
       end
 
