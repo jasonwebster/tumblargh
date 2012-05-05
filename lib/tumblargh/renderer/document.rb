@@ -6,7 +6,7 @@
       attr_accessor :config
 
       def initialize(node, context, config)
-        @config = config
+        @config = config.with_indifferent_access
         super(node, context)
       end
 
@@ -48,6 +48,10 @@
 
       def text(key)
         custom_value_for_type :text, key
+      end
+
+      def boolean(key)
+        custom_value_for_type :if, key
       end
 
       def custom_value_for_type(type, key)

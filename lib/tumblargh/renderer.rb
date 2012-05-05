@@ -192,7 +192,7 @@ module Tumblargh
         end
 
         def should_render?
-          context.send(variable.underscore)
+          context.boolean(variable.downcase)
         end
       end
 
