@@ -70,7 +70,9 @@ module Tumblargh
 
       doc = Nokogiri::HTML(html)
       doc.css('meta[name*=":"]').each do |meta|
-        type, variable = meta['name'].split(':')
+        type, variable = meta['name'].downcase.split(':')
+        variable.gsub!(/\s/, '')
+
         default = meta['content']
 
         default = case type
