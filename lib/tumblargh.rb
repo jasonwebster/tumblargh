@@ -29,17 +29,29 @@ module Tumblargh
     private
 
     def render(setter, theme, blog, options)
-      if API.api_key.nil? or not defined?(API.api_key)
-        raise "Need to specify a Tumblr API key for Tumblargh"
-      end
-
       parser = Parser.new
       parser.send("#{setter}=", theme)
-      blog = Resource::Blog.new(blog)
+
+      blog = create_blog blog
 
       options = parser.options.merge(options)
 
       Renderer::Document.new(parser.tree, blog, options).render
+    end
+
+    def create_blog(blog)
+      if blog.is_a? Resource::Blog
+        blog
+      elsif blog.is_a? Hash
+        blog = blog["response"] if blog.key? "response"
+        Resource::Blog.new("#{blog["blog"]["name"]}.tumblr.com", blog)
+      elsif File.exists? blog
+        json = ActiveSupport::JSON.decode(open(blog).read)
+        json = json["response"] if json.key? "response"
+        Resource::Blog.new("#{json["blog"]["name"]}.tumblr.com", json)
+      else
+        Resource::Blog.new(blog)
+      end
     end
 
   end

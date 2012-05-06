@@ -7,16 +7,20 @@ module Tumblargh
 
       def initialize(domain, attrs=nil)
         @domain = domain
-
-        attributes = attrs ? attrs : fetch
+        self.attributes = attrs.nil? ? fetch : attrs
       end
 
       def attributes=(attrs)
-        attrs = super(attrs)
+        attrs = attrs.with_indifferent_access
 
-        if attrs.include?(:posts)
-          posts = attrs[:posts]
-          @attributes.delete(:posts)
+        # We passed in result from /posts, or a local file
+        if attrs.include?(:posts) && attrs.include?(:blog)
+          self.posts = attrs[:posts]
+          attrs.delete(:posts)
+
+          self.attributes = attrs[:blog]
+        else
+          super(attrs)
         end
 
         @attributes

@@ -13,14 +13,18 @@ module Tumblargh
 
     class << self
 
+      @enabled = true
+
       attr_accessor :api_key
       alias_method :set_api_key, :api_key=
 
       def fetch(path, query={})
+        raise "API is disabled" unless enabled?
+
         query = query.merge(:api_key => api_key).to_query
         url = "#{API_ROOT}#{path}?#{query}"
         resp = APICache.get(url) { open(url).read }
-        ActiveSupport::JSON.decode( resp )['response']
+        ActiveSupport::JSON.decode(resp)['response']
       end
 
       def blog(domain)
@@ -36,6 +40,18 @@ module Tumblargh
         fetch("#{domain}/posts", query)['posts'][0]['notes']
       end
 
+
+      def enable!
+        @enabled = true
+      end
+
+      def disable!
+        @enabled = false
+      end
+
+      def enabled?
+        @enabled
+      end
 
     end
 
