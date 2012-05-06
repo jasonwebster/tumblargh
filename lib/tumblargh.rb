@@ -19,7 +19,7 @@ module Tumblargh
     attr_accessor :config
 
     def render_file(file, blog, options={})
-      render(:file, file, blog)
+      render(:file, file, blog, options)
     end
 
     def render_html(string, blog, options={})
