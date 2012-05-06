@@ -43,15 +43,18 @@ module Tumblargh
       if blog.is_a? Resource::Blog
         blog
       elsif blog.is_a? Hash
-        blog = blog["response"] if blog.key? "response"
-        Resource::Blog.new("#{blog["blog"]["name"]}.tumblr.com", blog)
+        create_blog_from_hash blog
       elsif File.exists? blog
         json = ActiveSupport::JSON.decode(open(blog).read)
-        json = json["response"] if json.key? "response"
-        Resource::Blog.new("#{json["blog"]["name"]}.tumblr.com", json)
+        create_blog_from_hash json
       else
         Resource::Blog.new(blog)
       end
+    end
+
+    def create_blog_from_hash(hash)
+      hash = hash["response"] if hash.key? "response"
+      Resource::Blog.new("#{hash["blog"]["name"]}.tumblr.com", hash)
     end
 
   end
