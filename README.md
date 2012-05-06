@@ -75,8 +75,10 @@ your Ruby server of choice.
 
 ### Known issues & planned features
 
-- Separate Tumblr resources (i.e. Blog, Posts, etc) from the API wrapper, so
-  we can locally define data, or save API responses for test fixtures.
+- Source attribution `{block:ContentSource}`
+- Your likes `{block:Likes}`
+- Twitter integration `{block:Twitter}`
+- Custom page support
 
 
 
