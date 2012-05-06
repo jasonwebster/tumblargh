@@ -11,9 +11,9 @@ module Tumblargh
 
     API_ROOT = 'http://api.tumblr.com/v2/blog/'
 
-    class << self
+    @enabled = true
 
-      @enabled = true
+    class << self
 
       attr_accessor :api_key
       alias_method :set_api_key, :api_key=
