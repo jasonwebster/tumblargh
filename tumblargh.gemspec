@@ -73,7 +73,8 @@ Gem::Specification.new do |s|
     "spec/resource/post_spec.rb",
     "spec/resource_spec.rb",
     "spec/spec_helper.rb",
-    "spec/tumblargh_spec.rb"
+    "spec/tumblargh_spec.rb",
+    "tumblargh.gemspec"
   ]
   s.homepage = "http://github.com/jasonwebster/tumblargh"
   s.require_paths = ["lib"]
