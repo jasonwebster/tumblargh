@@ -1,8 +1,8 @@
 module Tumblargh
   module Renderer
     module Blocks
+      
       # Rendered for each of a post's tags.
-      # TODO: Render for each tag in a post
       class Tags < Base
         def tag
           context.name

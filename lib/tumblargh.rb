@@ -4,8 +4,6 @@ require 'active_support/core_ext/string/conversions'
 require 'active_support/core_ext/time/conversions'
 require 'active_support/inflector'
 
-require 'tumblargh/version'
-
 module Tumblargh
 
   autoload :API,       'tumblargh/api'

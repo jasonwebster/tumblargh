@@ -24,4 +24,20 @@ task :console do
 end
 
 
+require 'jeweler'
+Jeweler::Tasks.new do |s|
+  s.name        = 'tumblargh'
+  s.summary     = 'Groan-less Tumblr theme development.'
+  s.description = `cat README.md`
+  s.authors     = ['Jason Webster']
+  s.email       = 'jason@metalabdesign.com'
+  s.homepage    = 'http://github.com/jasonwebster/tumblargh'
+
+  s.files        = `git ls-files`.split("\n")
+  s.require_path = 'lib'
+end
+
+Jeweler::RubygemsDotOrgTasks.new
+
+
 
