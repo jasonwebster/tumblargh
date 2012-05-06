@@ -61,24 +61,9 @@
       # END TAGS ------
 
       def render
-        res = node.map do |n|
-          renderer = Renderer.factory(n, self)
-
-          # TODO LOLOLOLOLOLOLOL
-          if renderer.class.name == 'Tumblargh::Renderer::Blocks::Posts'
-            posts = permalink? ? [context.posts.first] : context.posts
-
-            posts.map do |p|
-              p.context = self
-              post_renderer = renderer.class.new(n, p)
-              post_renderer.render
-            end
-          else
-            renderer.render
-          end
-        end
-
-        res.flatten.join('')
+        node.map do |n|
+          Renderer.factory(n, self).render
+        end.flatten.join('')
       end
     end
   end

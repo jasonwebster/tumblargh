@@ -24,9 +24,7 @@ module Tumblargh
           sig, type, *nodes = node
 
           res = nodes.map do |n|
-            # puts "#{self.class.name} --> #{self.context.class.name}"
-            renderer = Renderer.factory(n, self)
-            renderer.render
+            Renderer.factory(n, self).render
           end
 
           " #{res.join('')} "
