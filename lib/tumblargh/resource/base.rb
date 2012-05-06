@@ -1,5 +1,5 @@
 module Tumblargh
-  module API
+  module Resource
 
     class Base
 

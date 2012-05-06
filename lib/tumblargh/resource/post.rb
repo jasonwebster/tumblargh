@@ -1,7 +1,8 @@
 module Tumblargh
-  module API
+  module Resource
 
     class Post < Base
+
       def initialize(attrs, blog)
         @blog = blog
         super(attrs)
@@ -42,21 +43,18 @@ module Tumblargh
       end
 
       def tags
-        return @tags if defined?(@tags)
-        
-        @tags = @attributes[:tags].map do |t|
+        @tags ||= @attributes[:tags].map do |t|
           Tag.new({ :name => t })
         end
       end
 
       def notes
-        return @notes if defined?(@notes)
+        @notes || self.notes = API.notes(@blog.domain, :id => id)
+        @notes
+      end
 
-        path = "#{@blog.domain}/posts"
-        query = { :id => id, :notes_info => 'true' }
-        @notes = API.fetch(path, query)['posts'][0]['notes'].map do |n|
-          Note.new(n)
-        end
+      def notes=(ary)
+        @notes = ary.map { |n| Note.new(n) }
       end
 
     end

@@ -1,13 +1,13 @@
 require 'spec_helper'
 
-describe Tumblargh::API::Post do
+describe Tumblargh::Resource::Post do
   
   before do
     Tumblargh::API.set_api_key '8QoLnQy4lP0rn6QHNYSDxmhZo0L6xelNmNosAVj703FNfLBhZQ'
-    @posts = Tumblargh::API::Blog.new('staff.tumblr.com').posts
+    @posts = Tumblargh::Resource::Blog.new('staff.tumblr.com').posts
   end
 
-  it "should have an instance of Time for its data prop" do
+  it "should have an instance of Time for its date attribute" do
     @posts.each do |post|
       post.date.should be_an_instance_of Time
     end

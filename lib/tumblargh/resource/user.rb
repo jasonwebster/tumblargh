@@ -1,8 +1,7 @@
 module Tumblargh
-  module API
+  module Resource
 
     class User < Base
-
     end
 
   end

@@ -9,9 +9,10 @@ require 'tumblargh/version'
 module Tumblargh
 
   autoload :API,       'tumblargh/api'
-  autoload :Parser,    'tumblargh/parser'
   autoload :Node,      'tumblargh/node'
+  autoload :Parser,    'tumblargh/parser'
   autoload :Renderer,  'tumblargh/renderer'
+  autoload :Resource,  'tumblargh/resource'
 
   class << self
 
@@ -34,7 +35,7 @@ module Tumblargh
 
       parser = Parser.new
       parser.send("#{setter}=", theme)
-      blog = API::Blog.new(blog)
+      blog = Resource::Blog.new(blog)
 
       options = parser.options.merge(options)
 
