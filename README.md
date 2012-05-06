@@ -46,11 +46,8 @@ If one does not already exist, create a Gemfile and add the following as needed:
 source "http://rubygems.org"
 
 gem 'middleman'
-gem 'tumblargh', :git => 'git://github.com/jasonwebster/tumblargh.git'
+gem 'tumblargh'
 ```
-
-Note that there has not yet been an official release of tumblargh to RubyGems,
-so currently, specifying the gem via git is necessary.
 
 Run `bundle install`.
 
