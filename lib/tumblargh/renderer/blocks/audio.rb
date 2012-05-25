@@ -23,7 +23,7 @@ module Tumblargh
         end
 
         def audio_player_black
-          audio_player_black(:black)
+          audio_player(:black)
         end
 
         # def raw_audio_url
