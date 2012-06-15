@@ -28,7 +28,7 @@ require 'jeweler'
 Jeweler::Tasks.new do |s|
   s.name        = 'tumblargh'
   s.summary     = 'Groan-less Tumblr theme development.'
-  s.description = `cat README.md`
+  s.description = "If you've ever had to build a Tumblr theme, you've probably cried out in pain while tweaking locally, copying, pasting into the theme editor, saving, switching tabs and finally refreshing and waiting for your tesing blog to reload. Tumblargh aims to reduce suffering involved with building a theme by offering a way to fully develop, lint and test Tumblr themes locally, with real posts from any existing Tumblog."
   s.authors     = ['Jason Webster']
   s.email       = 'jason@metalabdesign.com'
   s.homepage    = 'http://github.com/jasonwebster/tumblargh'
