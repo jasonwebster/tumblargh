@@ -8,6 +8,14 @@ module Tumblargh
         super(attrs)
       end
 
+      def type
+        if @attributes[:type] == 'photo'
+          photos.size > 1 ? 'photoset' : 'photo'
+        else
+          @attributes[:type]
+        end
+      end
+
       # Override method_missing so this does not propagate
       def title
         @attributes[:title]
@@ -19,15 +27,7 @@ module Tumblargh
 
       def photo_url(size=500)
         return nil if (photos.nil? || photos.empty?)
-
-        size = size.to_i
-
-        orig = photos.first[:original_size]
-        res = photos.first[:alt_sizes].select do |p|
-          p[:width] == size
-        end
-
-        res.empty? ? orig[:url] : res.first[:url]
+        photos.first.photo_url size
       end
 
       def video(size=500)
@@ -55,6 +55,12 @@ module Tumblargh
 
       def notes=(ary)
         @notes = ary.map { |n| Note.new(n) }
+      end
+
+      def photos
+        @photos ||= @attributes[:photos].map do |p|
+          Photo.new(p)
+        end
       end
 
     end
