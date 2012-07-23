@@ -27,24 +27,55 @@ The recommended way to use tumblargh is in conjuction with
 templating languages (Haml, Sass, Compass, Slim, CoffeeScript, and more).
 
 Tumblargh includes a simple Middleman extension that turns any Middleman project
-into a local Tumblr theme building machine. The bare minimum setup in your
-Middleman config.rb is:
-
-    require 'tumblargh'
-    require 'middleman/features/tumblargh'
-
-    activate :tumblargh
-    set_tumblr_api_key 'API KEY'
-    set_tumlbr_blog 'staff.tumblr.com'
+into a local Tumblr theme building machine.
 
 Tumblargh will automatically parse any html files served by Middleman, and 
 populate them with content from the Tumblr of your choosing. It will not
 parse any HTML during Middleman's build process. The output of`middleman build` 
 is ready for use on your blog, or submission to the Tumblr theme store.
 
+To get up an running with Middleman, first create a new Middleman project:
+
+```
+$ middleman init MY_PROJECT_NAME
+```
+
+If one does not already exist, create a Gemfile and add the following as needed:
+
+```ruby
+source "http://rubygems.org"
+
+gem 'middleman'
+gem 'tumblargh'
+```
+
+Run `bundle install`.
+
+The bare minimum setup in your Middleman config.rb is:
+
+```ruby
+require 'tumblargh'
+require 'middleman/features/tumblargh'
+
+activate :tumblargh
+
+set_tumblr_api_key 'API KEY' # This is your OAuth consumer key
+set_tumblr_blog 'staff.tumblr.com'
+```
+
+It is highly recommended to run the Middleman server via `bundle exec`.
+
 #### Rack
 
 See `examples/config.ru` for a minimal Rack setup, ready to go with `rackup` or
 your Ruby server of choice.
 
-### Known issues, TODOs & planned features
+### Known issues & planned features
+
+- Source attribution `{block:ContentSource}`
+- Your likes `{block:Likes}`
+- Twitter integration `{block:Twitter}`
+- Custom page support
+
+
+

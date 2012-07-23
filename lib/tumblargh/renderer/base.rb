@@ -28,7 +28,7 @@ module Tumblargh
 
       def context_post
         real_post = context
-        while not real_post.is_a?(API::Post)
+        while not real_post.is_a?(::Tumblargh::Resource::Post)
           real_post = real_post.context
         end
 

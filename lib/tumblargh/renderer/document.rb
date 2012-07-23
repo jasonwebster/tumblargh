@@ -6,7 +6,7 @@
       attr_accessor :config
 
       def initialize(node, context, config)
-        @config = config
+        @config = config.with_indifferent_access
         super(node, context)
       end
 
@@ -50,6 +50,10 @@
         custom_value_for_type :text, key
       end
 
+      def boolean(key)
+        custom_value_for_type :if, key
+      end
+
       def custom_value_for_type(type, key)
         config[type][key] rescue raise "No appearance option for #{type}:#{key}"
       end
@@ -57,24 +61,9 @@
       # END TAGS ------
 
       def render
-        res = node.map do |n|
-          renderer = Renderer.factory(n, self)
-
-          # TODO LOLOLOLOLOLOLOL
-          if renderer.class.name == 'Tumblargh::Renderer::Blocks::Posts'
-            posts = permalink? ? [context.posts.first] : context.posts
-
-            posts.map do |p|
-              p.context = self
-              post_renderer = renderer.class.new(n, p)
-              post_renderer.render
-            end
-          else
-            renderer.render
-          end
-        end
-
-        res.flatten.join('')
+        node.map do |n|
+          Renderer.factory(n, self).render
+        end.flatten.join('')
       end
     end
   end

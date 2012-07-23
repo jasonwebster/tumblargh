@@ -1,19 +1,19 @@
 require 'spec_helper'
 
-describe Tumblargh::API::Post do
+describe Tumblargh::Resource::Post do
   
   before do
-    Tumblargh::API.set_api_key '8QoLnQy4lP0rn6QHNYSDxmhZo0L6xelNmNosAVj703FNfLBhZQ'
-    @posts = Tumblargh::API::Blog.new('staff.tumblr.com').posts
+    json_path = File.join(FIXTURE_PATH, "data", "staff.tumblr.com-2012-05-06", "posts.json")
+    @json = ActiveSupport::JSON.decode(open(json_path).read)["response"]
+    @blog = Tumblargh::Resource::Blog.new("staff.tumblr.com", @json)
+    @posts = @blog.posts
   end
 
-  it "should have an instance of Time for its data prop" do
+  it "should have an instance of Time for its date attribute" do
     @posts.each do |post|
       post.date.should be_an_instance_of Time
     end
   end
-
-  #### TAGS ####
 
   it "should always return an array of tags" do
     @posts.each do |post|

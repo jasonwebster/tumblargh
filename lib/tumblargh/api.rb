@@ -11,13 +11,7 @@ module Tumblargh
 
     API_ROOT = 'http://api.tumblr.com/v2/blog/'
 
-    autoload :Base,      'tumblargh/api/base'
-    autoload :Blog,      'tumblargh/api/blog'
-    autoload :Note,      'tumblargh/api/note'
-    autoload :Post,      'tumblargh/api/post'
-    autoload :Tag,       'tumblargh/api/tag'
-    autoload :User,      'tumblargh/api/user'
-
+    @enabled = true
 
     class << self
 
@@ -25,16 +19,40 @@ module Tumblargh
       alias_method :set_api_key, :api_key=
 
       def fetch(path, query={})
-        query.merge!(:api_key => api_key)
-        url = "#{API_ROOT}#{path}?#{query.to_query}"
+        raise "API is disabled" unless enabled?
 
-        resp = APICache.get(url) do
-          open(url).read
-        end
-
-        # TODO raise on API errors.
-        ActiveSupport::JSON.decode( resp )['response']
+        query = query.merge(:api_key => api_key).to_query
+        url = "#{API_ROOT}#{path}?#{query}"
+        resp = APICache.get(url) { open(url).read }
+        ActiveSupport::JSON.decode(resp)['response']
       end
+
+      def blog(domain)
+        fetch("#{domain}/info")['blog']
+      end
+
+      def posts(domain, query={})
+        fetch("#{domain}/posts")['posts']
+      end
+
+      def notes(domain, query)
+        query.merge!(:notes_info => 'true')
+        fetch("#{domain}/posts", query)['posts'][0]['notes']
+      end
+
+
+      def enable!
+        @enabled = true
+      end
+
+      def disable!
+        @enabled = false
+      end
+
+      def enabled?
+        @enabled
+      end
+
     end
 
 

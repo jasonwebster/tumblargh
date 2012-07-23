@@ -61,67 +61,6 @@ module Tumblargh
         end
       end
 
-      # Posts Loop
-      #
-      # {block:Posts} is executed once for each post. Some post related tags can 
-      # exist outside of a `type` block, such as {Title} or {Permalink}, so
-      # they should be defined here
-      class Posts < Base
-
-        contextual_tag :post_id, :id
-        contextual_tag :post_type, :type
-        contextual_tag :title
-        contextual_tag :caption
-
-        def permalink
-          url = context.post_url
-          
-          url.gsub(/^http:\/\/[^\/]+/, '')
-        end
-
-        # TODO: This should not be necessary
-        def permalink?
-          context.context.permalink?
-        end
-
-        def post_notes_url
-          # http://bikiniatoll.tumblr.com/notes/1377511430/vqS0xw8sm
-          "/notes/#{context.id}/"
-        end
-
-        def reblog_url
-          "/reblog/#{context.reblog_key}"
-        end
-
-        def render
-          sig, type, *nodes = node
-
-          res = nodes.map do |n|
-            renderer = Renderer.factory(n, self)
-
-            # TODO LOLOLOLOLOLOLOL
-            if renderer.class.name == 'Tumblargh::Renderer::Blocks::Tags'
-              context_post.tags.map do |t|
-                t.context = self
-                tag_renderer = renderer.class.new(n, t)
-                tag_renderer.render
-              end
-            elsif renderer.class.name == 'Tumblargh::Renderer::Blocks::Lines'
-              context_post.dialogue.map do |t|
-                t.context = self
-                line_renderer = renderer.class.new(n, t)
-                line_renderer.render
-              end
-            else
-              renderer.render
-            end
-          end
-
-          res.flatten.join('')
-        end
-
-      end
-
       # Common post blocks
       class Title < Base
         def should_render?
@@ -198,7 +137,7 @@ module Tumblargh
         end
 
         def should_render?
-          context.send(variable.underscore)
+          context.boolean(variable.downcase)
         end
       end
 
@@ -264,26 +203,6 @@ module Tumblargh
       class HasTags < Base
         def should_render?
           !(tags.nil? || tags.blank?)
-        end
-      end
-
-      # Rendered for each of a post's tags.
-      # TODO: Render for each tag in a post
-      class Tags < Base
-        def tag
-          context.name
-        end
-
-        def url_safe_tag
-          escape_url(tag)
-        end
-
-        def tag_url
-          "/tagged/#{url_safe}"
-        end
-
-        def tag_url_chrono
-          "#{tag_url}/chrono"
         end
       end
 
@@ -385,10 +304,11 @@ module Tumblargh
       require 'tumblargh/renderer/blocks/audio'
       require 'tumblargh/renderer/blocks/chat'
       require 'tumblargh/renderer/blocks/dates'
-      require 'tumblargh/renderer/blocks/notes'
-      require 'tumblargh/renderer/blocks/reblogs'
       require 'tumblargh/renderer/blocks/navigation'
-      
+      require 'tumblargh/renderer/blocks/notes'
+      require 'tumblargh/renderer/blocks/posts'
+      require 'tumblargh/renderer/blocks/reblogs'
+      require 'tumblargh/renderer/blocks/tags'
 
     end
   end

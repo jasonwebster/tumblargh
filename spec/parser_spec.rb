@@ -129,18 +129,18 @@ describe Tumblargh::Parser do
     it "should contain the correct appearance options" do
       @parser.options.should == {
         "image" => {
-          "Background" => ""
+          "background" => ""
         }, 
         "if" => {
-          "Show people I follow" => true,
-          "Show my portrait photo" => true, 
-          "Show via links with reblogged posts" => true, 
-          "Use classic paging" => false, 
-          "Hide Disqus comment count if zero" => false
+          "showpeopleifollow" => true,
+          "showmyportraitphoto" => true, 
+          "showvialinkswithrebloggedposts" => true, 
+          "useclassicpaging" => false, 
+          "hidedisquscommentcountifzero" => false
         }, 
         "text" => {
-          "Disqus Shortname" => "",
-          "Google Analytics ID" => ""
+          "disqusshortname" => "",
+          "googleanalyticsid" => ""
         }
       }
     end
