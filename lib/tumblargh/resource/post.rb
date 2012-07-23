@@ -58,9 +58,7 @@ module Tumblargh
       end
 
       def dialogue
-        @dialogue ||= @attributes[:dialogue].map do |t|
-          Base.new(t)
-        end
+        @dialogue ||= @attributes[:dialogue].map { |t| Dialogue.new(t) }
       end
 
     end
