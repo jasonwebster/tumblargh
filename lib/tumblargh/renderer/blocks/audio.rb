@@ -65,6 +65,9 @@ module Tumblargh
         contextual_tag :track_name
       end
 
+      class AudioEmbed < Base
+      end
+
     end
   end
 end
