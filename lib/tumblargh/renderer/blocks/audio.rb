@@ -23,7 +23,7 @@ module Tumblargh
         end
 
         def audio_player_black
-          audio_player_black(:black)
+          audio_player(:black)
         end
 
         # def raw_audio_url
@@ -63,6 +63,9 @@ module Tumblargh
       class TrackName < Base
         should_render_unless_blank :track_name
         contextual_tag :track_name
+      end
+
+      class AudioEmbed < Base
       end
 
     end
