@@ -22,8 +22,10 @@ module Tumblargh
 
         size = size.to_i
 
-        orig = photos.first[:original_size]
-        res = photos.first[:alt_sizes].select do |p|
+        photo = photos.first
+
+        orig = photo.original_size
+        res = photo.alt_sizes.select do |p|
           p[:width] == size
         end
 
@@ -55,6 +57,14 @@ module Tumblargh
 
       def notes=(ary)
         @notes = ary.map { |n| Note.new(n) }
+      end
+
+      def photos
+        @photos ||= @attributes[:photos].map { |t| Photo.new(t) } rescue []
+      end
+
+      def dialogue
+        @dialogue ||= @attributes[:dialogue].map { |t| Dialogue.new(t) }
       end
 
     end

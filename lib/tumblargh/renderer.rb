@@ -112,9 +112,8 @@ module Tumblargh
       end
 
       class Video < Photo
+
       end
-
-
 
       class Quote < Post
         def quote
@@ -310,6 +309,7 @@ module Tumblargh
       require 'tumblargh/renderer/blocks/posts'
       require 'tumblargh/renderer/blocks/reblogs'
       require 'tumblargh/renderer/blocks/tags'
+      require 'tumblargh/renderer/blocks/photos'
 
     end
   end

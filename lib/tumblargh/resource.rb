@@ -7,6 +7,7 @@ module Tumblargh
     autoload :Post,      'tumblargh/resource/post'
     autoload :Tag,       'tumblargh/resource/tag'
     autoload :User,      'tumblargh/resource/user'
+    autoload :Photo,     'tumblargh/resource/photo'
 
   end
 end
