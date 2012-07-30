@@ -61,8 +61,6 @@ module Tumblargh
         end
       end
 
-
-
       # Common post blocks
       class Title < Base
         def should_render?
@@ -303,6 +301,7 @@ module Tumblargh
 
       require 'tumblargh/renderer/blocks/answer'
       require 'tumblargh/renderer/blocks/audio'
+      require 'tumblargh/renderer/blocks/chat'
       require 'tumblargh/renderer/blocks/dates'
       require 'tumblargh/renderer/blocks/navigation'
       require 'tumblargh/renderer/blocks/notes'
