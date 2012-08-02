@@ -7,6 +7,9 @@ module Tumblargh
       attr_accessor :context
       
       def initialize(attrs={})
+        if attrs['photoset_layout']
+          attrs['type'] = 'photoset'
+        end
         self.attributes = attrs
       end
 
