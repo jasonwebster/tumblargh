@@ -5,6 +5,7 @@ module Tumblargh
     autoload :Blog,      'tumblargh/resource/blog'
     autoload :Dialogue,  'tumblargh/resource/dialogue'
     autoload :Note,      'tumblargh/resource/note'
+    autoload :Photo,     'tumblargh/resource/photo'
     autoload :Post,      'tumblargh/resource/post'
     autoload :Tag,       'tumblargh/resource/tag'
     autoload :User,      'tumblargh/resource/user'

@@ -77,8 +77,7 @@ module Tumblargh
       # Base post type
       class Post < Base
         def should_render?
-          # TODO Looks like photosets come as type = 'photo'
-          self.class.name.split('::').last.downcase == context.type
+          self.class.name.demodulize.downcase == context.type
         end
       end
 
@@ -97,8 +96,8 @@ module Tumblargh
       end
 
       class Photo < Post
-        def photo_url(size=500)
-          context.photo_url(size)
+        def should_render?
+          context_post.type == 'photo' && context_post.photos.size == 1
         end
 
         def photo_alt
@@ -106,8 +105,7 @@ module Tumblargh
         end
       end
 
-      class Photoset < Photo
-      end
+
 
       class Video < Photo
       end
@@ -306,6 +304,7 @@ module Tumblargh
       require 'tumblargh/renderer/blocks/dates'
       require 'tumblargh/renderer/blocks/navigation'
       require 'tumblargh/renderer/blocks/notes'
+      require 'tumblargh/renderer/blocks/photoset'
       require 'tumblargh/renderer/blocks/posts'
       require 'tumblargh/renderer/blocks/reblogs'
       require 'tumblargh/renderer/blocks/tags'
