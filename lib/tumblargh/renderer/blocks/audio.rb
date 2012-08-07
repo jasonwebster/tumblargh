@@ -68,6 +68,9 @@ module Tumblargh
       class AudioEmbed < Base
       end
 
+      class AudioPlayer < Base
+      end
+
     end
   end
 end
