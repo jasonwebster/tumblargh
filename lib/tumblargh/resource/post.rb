@@ -58,11 +58,11 @@ module Tumblargh
       end
 
       def dialogue
-        @dialogue ||= @attributes[:dialogue].map { |t| Dialogue.new(t) }
-			end
+        @dialogue ||= (@attributes[:dialogue] || []).map { |t| Dialogue.new(t) }
+      end
 
-			def photos
-        @photos ||= @attributes[:photos].map { |p| Photo.new(p) }
+      def photos
+        @photos ||= (@attributes[:photos] || []).map { |p| Photo.new(p) }
       end
 
     end
