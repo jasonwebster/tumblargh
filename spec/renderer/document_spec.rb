@@ -3,53 +3,17 @@ require 'spec_helper'
 
 describe Tumblargh::Renderer::Document do
 
-  before do
-    @parser = Tumblargh::Parser.new
-  end
-
-  describe "boolean blocks" do
+  describe "permalink pages" do
 
     before do
-      @parser.html = <<-eos
-      {block:IfSomethingOnByDefault}
-      PASS_ON
-      {/block:IfSomethingOnByDefault}
+      @parser = Tumblargh::Parser.new
+      @parser.html = ""
 
-      {block:IfSomethingOffByDefault}
-      FAIL_OFF
-      {/block:IfSomethingOffByDefault}
-
-      {block:IfNotSomethingOnByDefault}
-      FAIL_INVERSE_ON
-      {/block:IfNotSomethingOnByDefault}
-
-      {block:IfNotSomethingOffByDefault}
-      PASS_INVERSE_OFF
-      {/block:IfNotSomethingOffByDefault}
-
-
-      eos
-
-      options = {
-        "if" => {
-          "somethingonbydefault" => true,
-          "somethingoffbydefault" => false
-        }
-      }
-
-      @document = Tumblargh::Renderer::Document.new(@parser.tree, nil, options)
-      @output = @document.render
+      @document = Tumblargh::Renderer::Document.new(@parser.tree, nil, :permalink => true)
     end
 
-    it "should respect the default settings" do
-      @output.should match /PASS_ON/
-      @output.should_not match /FAIL_OFF/
-    end
-
-
-    it "inverse (IfNot) blocks should work" do
-      @output.should_not match /FAIL_INVERSE_ON/
-      @output.should match /PASS_INVERSE_OFF/
+    it "the document should know this is a permalink page" do
+      @document.permalink?.should be_true
     end
 
   end
