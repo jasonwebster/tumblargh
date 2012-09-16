@@ -31,7 +31,7 @@ module Tumblargh
       end
 
       def fetch!
-        attributes = fetch
+        self.attributes = fetch
       end
 
       def posts
