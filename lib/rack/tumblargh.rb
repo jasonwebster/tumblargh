@@ -1,6 +1,5 @@
 module Rack
   class Tumblargh
-    Tumblargh = ::Tumblargh
 
     def initialize(app, options={})
       @app = app
@@ -11,10 +10,18 @@ module Rack
     attr_reader :options
 
     def call(env)
+      request = Rack::Request.new(env)
+
+      ['/tweets.js', %r{/api.*}].each do |route|
+        if request.path.match route
+          url = "http://#{@options[:blog]}#{request.path}?#{request.query_string}"
+          return [301, { "Location" => url }, []]
+        end
+      end
+
       status, headers, response = @app.call(env)
 
       if should_parse?(status, headers)
-
         content = response.respond_to?(:body) ? response.body : response
         render_opts = { :permalink => permalink?(env['PATH_INFO']) }
 
@@ -44,7 +51,7 @@ module Rack
     end
 
     def render(content, opts)
-      Tumblargh::render_html(content.first, options[:blog], opts)
+      ::Tumblargh::render_html(content.first, options[:blog], opts)
     end
 
   end

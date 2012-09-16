@@ -58,3 +58,8 @@ module Tumblargh
   end
 
 end
+
+if Kernel.const_defined? :Middleman
+  require "middleman/extensions/tumblargh"
+  Middleman::Extensions.register(:tumblargh, Middleman::Extensions::Tumblargh)
+end
