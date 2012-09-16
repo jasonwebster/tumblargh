@@ -1,7 +1,6 @@
 require 'tumblargh'
-require 'middleman/features/tumblargh'
 
+activate :tumblargh,
+  api_key: 'API KEY',
+  blog: 'staff.tumblr.com'
 
-activate :tumblargh
-set_tumblr_api_key 'API KEY'
-set_tumlbr_blog 'staff.tumblr.com'
