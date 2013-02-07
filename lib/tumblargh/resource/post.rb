@@ -65,6 +65,10 @@ module Tumblargh
         @photos ||= (@attributes[:photos] || []).map { |p| Photo.new(p) }
       end
 
+      def tags_as_classes
+        @tags.collect { |tag| tag.name.downcase.underscore } if @tags.any?
+      end
+
     end
 
   end
