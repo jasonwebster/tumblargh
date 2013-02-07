@@ -11,6 +11,7 @@ module Tumblargh
         contextual_tag :post_id, :id
         contextual_tag :post_type, :type
         contextual_tag :title
+        contextual_tag :tags_as_classes
         contextual_tag :caption
 
         def permalink
