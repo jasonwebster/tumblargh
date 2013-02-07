@@ -38,7 +38,9 @@ describe Tumblargh::Resource::Post do
       tags = post.tags_as_classes
 
       if post.tags.any?
-        post.tags.collect { |t| t.name.downcase.underscore }.join(" ").should == tags
+        post.tags.collect { |t| 
+          t.name.titlecase.gsub(/\s+/, '').underscore.downcase 
+        }.join(" ").should == tags
       end
     end
   end

@@ -66,7 +66,9 @@ module Tumblargh
       end
 
       def tags_as_classes
-        tags.collect { |tag| tag.name.underscore }.join(' ') if tags and tags.any?
+        tags.collect { |tag| 
+          tag.name.titlecase.gsub(/\s+/, '').underscore.downcase 
+        }.join(' ') if tags and tags.any?
       end
 
     end
