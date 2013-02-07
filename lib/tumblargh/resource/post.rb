@@ -66,7 +66,7 @@ module Tumblargh
       end
 
       def tags_as_classes
-        @tags.collect { |tag| tag.name.downcase.underscore } if @tags.any?
+        @tags.collect { |tag| tag.name.downcase.underscore } if @tags and @tags.any?
       end
 
     end
