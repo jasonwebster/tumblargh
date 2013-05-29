@@ -40,7 +40,6 @@ module Tumblargh
         fetch("#{domain}/posts", query)['posts'][0]['notes']
       end
 
-
       def enable!
         @enabled = true
       end
