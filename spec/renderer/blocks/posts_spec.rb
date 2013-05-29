@@ -14,4 +14,13 @@ describe Tumblargh::Renderer::Blocks::Posts do
     result.count("!").should eql @json[:posts].size
   end
 
+  describe "{TagsAsClasses}" do
+    let(:post) { Tumblargh::Resource::Post.new({ tags: ["TROLOLOL", "Herp derp"] }, nil) }
+
+    subject { Tumblargh::Renderer::Blocks::Posts.new(nil, post) }
+
+    it "should give the tags as class names" do
+      subject.tags_as_classes.should eql "trololol herp_derp"
+    end
+  end
 end
