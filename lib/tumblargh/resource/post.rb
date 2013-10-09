@@ -25,13 +25,25 @@ module Tumblargh
         @date ||= @attributes[:date].to_time
       end
 
-      def photo_url(size=500)
-        return nil if (photos.nil? || photos.empty?)
-        photos.first.photo_url size
+      # URL of the photo for this post
+      #
+      # @return [String]
+      def photo_url(size = 500)
+        photos.present? && photos.first.photo_url(size)
       end
 
-      def video(size=500)
-        return nil if (player.nil? || player.empty?)
+      # @return [Fixnum]
+      def photo_width(size = 500)
+        photos.present? && photos.first.photo_width(size)
+      end
+
+      # @return [Fixnum]
+      def photo_height(size = 500)
+        photos.present? && photos.first.photo_height(size)
+      end
+
+      def video(size = 500)
+        return nil if player.blank?
 
         size = size.to_i
 
