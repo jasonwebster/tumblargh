@@ -33,6 +33,17 @@ describe Tumblargh::Resource::Post do
     end
   end
 
+  it "should give the tags as class names" do
+    @posts.each do |post|
+      tags = post.tags_as_classes
+
+      if post.tags.any?
+        post.tags.collect { |t| 
+          t.name.titlecase.gsub(/\s+/, '').underscore.downcase 
+        }.join(" ").should == tags
+      end
+    end
+  end
 
 
 end

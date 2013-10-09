@@ -13,5 +13,4 @@ describe Tumblargh::Renderer::Blocks::Posts do
     result = Tumblargh.render_html(theme, @json)
     result.count("!").should eql @json[:posts].size
   end
-
 end

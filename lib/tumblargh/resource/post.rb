@@ -65,6 +65,12 @@ module Tumblargh
         @photos ||= (@attributes[:photos] || []).map { |p| Photo.new(p) }
       end
 
+      def tags_as_classes
+        tags.collect { |tag| 
+          tag.name.titlecase.gsub(/\s+/, '').underscore.downcase 
+        }.join(' ') if tags and tags.any?
+      end
+
     end
 
   end
