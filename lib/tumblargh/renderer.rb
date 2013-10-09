@@ -9,7 +9,7 @@ require 'tumblargh/renderer/tag'
 module Tumblargh
   module Renderer
 
-    def self.factory(node, context)
+    def self.factory(node, context, options = {})
       args = []
       base = node.first.to_s
 
@@ -35,7 +35,7 @@ module Tumblargh
       klass_name = "Tumblargh::Renderer::#{base}"
       klass = klass_name.constantize
 
-      klass.new(node, context, *args)
+      klass.new(node, context, options, *args)
     end
 
   end

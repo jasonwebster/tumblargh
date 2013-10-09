@@ -91,9 +91,9 @@ module Tumblargh
       class Boolean < Base
         attr_reader :variable
 
-        def initialize(node, context, *args)
+        def initialize(node, context, options = {}, *args)
           @variable = args[0]
-          super(node, context)
+          super(node, context, options)
         end
 
         def should_render?
@@ -120,7 +120,7 @@ module Tumblargh
         end
       end
 
-      # Identical to {PostTitle}, but will automatically generate a summary 
+      # Identical to {PostTitle}, but will automatically generate a summary
       # if a title doesn't exist.
       class PostSummary < PostTitle
         def post_summary

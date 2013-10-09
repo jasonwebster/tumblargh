@@ -22,10 +22,10 @@ module Tumblargh
         def render
           return '' unless should_render?
 
-          sig, type, *nodes = node
+          _, type, options, *nodes = node
 
           res = nodes.map do |n|
-            Renderer.factory(n, self).render
+            Renderer.factory(n, self, options).render
           end
 
           " #{res.join('')} "

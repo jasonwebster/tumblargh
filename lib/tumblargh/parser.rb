@@ -3,6 +3,8 @@ require 'open-uri'
 require 'nokogiri'
 
 module Tumblargh
+  class ParserError < StandardError
+  end
 
   class Parser
     grammar_file = File.join(File.dirname(__FILE__), 'grammar')
@@ -56,10 +58,8 @@ module Tumblargh
     def parse
       @structure = @@parser.parse(html)
 
-      if(@structure.nil?)
-        puts @@parser.failure_reason
-        puts "#{@@parser.failure_line}:#{@@parser.failure_column}"
-        raise ParserError, "Parse error at offset: #{@@parser.index}"
+      if @structure.nil?
+        raise ParserError, @@parser.failure_reason
       end
 
       @tree = @structure.to_tree
@@ -77,7 +77,7 @@ module Tumblargh
 
         default = case type
         when "if"
-          default == "1" ? true : false
+          default == "1"
         else
           default
         end
@@ -89,8 +89,4 @@ module Tumblargh
       opts
     end
   end
-
-  class ParserError < StandardError
-  end
-
 end

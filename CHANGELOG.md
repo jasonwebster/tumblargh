@@ -1,3 +1,7 @@
+## master
+
+- Block arguments, such as `{block:JumpPagination length="5"}` are now supported
+
 ## 0.2.0
 
 - Middlman 3.0 support

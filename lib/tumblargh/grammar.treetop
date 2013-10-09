@@ -12,11 +12,23 @@ grammar Tumblr
   end
 
   rule block_start
-    '{block:' [^\s}:;]+ '}' space? <Tumblargh::Node::BlockStart>
+    '{block:' block_name space? block_arguments? '}' space? <Tumblargh::Node::BlockStart>
   end
 
   rule block_end
-    '{/block:' [^\s}]+ '}' space? <Tumblargh::Node::BlockEnd>
+    '{/block:' block_name '}' space? <Tumblargh::Node::BlockEnd>
+  end
+
+  rule block_name
+    [^\s}:;]+
+  end
+
+  rule block_arguments
+    block_argument+
+  end
+
+  rule block_argument
+    (([a-zA-Z0-9]+) '=' '"' ([a-zA-Z0-9]+) '"') space?
   end
 
   rule tag

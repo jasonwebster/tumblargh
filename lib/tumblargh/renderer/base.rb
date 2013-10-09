@@ -1,15 +1,14 @@
 module Tumblargh
   module Renderer
-
     class Base
 
       class << self
 
         # Define a simple tag on the block.
-        # Name being tag name, and optionally the  attibute/method to call 
+        # Name being tag name, and optionally the  attibute/method to call
         # on the context. If the second argument is left off, it'll just use the tag name.
         def contextual_tag(name, attribute=nil)
-          class_eval do 
+          class_eval do
             define_method name do
               context.send(attribute || name)
             end
@@ -18,12 +17,15 @@ module Tumblargh
 
       end
 
-      attr_reader :node
+      attr_reader :node, :options
       attr_accessor :context
 
-      def initialize(node, context)
+      alias_method :config, :options # Backwards compatibility with old Document rendere
+
+      def initialize(node, context, options = {})
         @node = node
         @context = context
+        @options = options.with_indifferent_access
       end
 
       def context_post
