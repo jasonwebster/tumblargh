@@ -1,4 +1,7 @@
 # Tumblargh
+
+[![Build Status](https://travis-ci.org/jasonwebster/tumblargh.png?branch=master)](https://travis-ci.org/jasonwebster/tumblargh)
+
 ## Groan-less Tumblr theme development
 
 ### What is this thing, and why should I care?
