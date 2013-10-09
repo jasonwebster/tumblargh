@@ -3,7 +3,7 @@ module Tumblargh
     module Blocks
       # Posts Loop
       #
-      # {block:Posts} is executed once for each post. Some post related tags can 
+      # {block:Posts} is executed once for each post. Some post related tags can
       # exist outside of a `type` block, such as {Title} or {Permalink}, so
       # they should be defined here
       class Posts < Base
@@ -29,6 +29,22 @@ module Tumblargh
 
         def reblog_url
           "/reblog/#{context.reblog_key}"
+        end
+
+        # An HTML class-attribute friendly list of the post's tags.
+        # Example: "humor office new_york_city"
+        #
+        # By default, an HTML friendly version of the source domain of imported
+        # posts will be included. This may not behave as expected with feeds
+        # like Del.icio.us that send their content URLs as their permalinks.
+        # Example: "twitter_com", "digg_com", etc.
+        #
+        # The class-attribute "reblog" will be included automatically if the
+        # post was reblogged from another post.
+        def tags_as_classes
+          context.tags.map do |tag|
+            tag.name.titlecase.gsub(/\s+/, '').underscore.downcase
+          end.join " "
         end
 
         def render

@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Tumblargh::Resource::Post do
-  
+
   before do
     json_path = File.join(FIXTURE_PATH, "data", "staff.tumblr.com-2012-05-06", "posts.json")
     @json = ActiveSupport::JSON.decode(open(json_path).read)["response"]
@@ -32,7 +32,5 @@ describe Tumblargh::Resource::Post do
       post.tags.map(&:name).should == post.attributes[:tags]
     end
   end
-
-
 
 end

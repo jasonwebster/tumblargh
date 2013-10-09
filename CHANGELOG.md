@@ -1,3 +1,7 @@
+## master
+
+- Implement `{TagsAsClasses}` tag
+
 ## 0.2.1
 
 - Block arguments, such as `{block:JumpPagination length="5"}` are now supported
