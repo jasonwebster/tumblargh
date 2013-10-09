@@ -134,6 +134,10 @@ module Tumblr
   end
 
   module BlockStart0
+    def block_name
+      elements[1]
+    end
+
   end
 
   def _nt_block_start
@@ -157,44 +161,43 @@ module Tumblr
     end
     s0 << r1
     if r1
-      s2, i2 = [], index
-      loop do
-        if has_terminal?('\G[^\\s}:;]', true, index)
-          r3 = true
-          @index += 1
-        else
-          r3 = nil
-        end
-        if r3
-          s2 << r3
-        else
-          break
-        end
-      end
-      if s2.empty?
-        @index = i2
-        r2 = nil
-      else
-        r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
-      end
+      r2 = _nt_block_name
       s0 << r2
       if r2
-        if has_terminal?('}', false, index)
-          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
-          @index += 1
-        else
-          terminal_parse_failure('}')
-          r4 = nil
-        end
-        s0 << r4
+        r4 = _nt_space
         if r4
-          r6 = _nt_space
+          r3 = r4
+        else
+          r3 = instantiate_node(SyntaxNode,input, index...index)
+        end
+        s0 << r3
+        if r3
+          r6 = _nt_block_arguments
           if r6
             r5 = r6
           else
             r5 = instantiate_node(SyntaxNode,input, index...index)
           end
           s0 << r5
+          if r5
+            if has_terminal?('}', false, index)
+              r7 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure('}')
+              r7 = nil
+            end
+            s0 << r7
+            if r7
+              r9 = _nt_space
+              if r9
+                r8 = r9
+              else
+                r8 = instantiate_node(SyntaxNode,input, index...index)
+              end
+              s0 << r8
+            end
+          end
         end
       end
     end
@@ -212,6 +215,10 @@ module Tumblr
   end
 
   module BlockEnd0
+    def block_name
+      elements[1]
+    end
+
   end
 
   def _nt_block_end
@@ -235,44 +242,25 @@ module Tumblr
     end
     s0 << r1
     if r1
-      s2, i2 = [], index
-      loop do
-        if has_terminal?('\G[^\\s}]', true, index)
-          r3 = true
-          @index += 1
-        else
-          r3 = nil
-        end
-        if r3
-          s2 << r3
-        else
-          break
-        end
-      end
-      if s2.empty?
-        @index = i2
-        r2 = nil
-      else
-        r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
-      end
+      r2 = _nt_block_name
       s0 << r2
       if r2
         if has_terminal?('}', false, index)
-          r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+          r3 = instantiate_node(SyntaxNode,input, index...(index + 1))
           @index += 1
         else
           terminal_parse_failure('}')
-          r4 = nil
+          r3 = nil
         end
-        s0 << r4
-        if r4
-          r6 = _nt_space
-          if r6
-            r5 = r6
+        s0 << r3
+        if r3
+          r5 = _nt_space
+          if r5
+            r4 = r5
           else
-            r5 = instantiate_node(SyntaxNode,input, index...index)
+            r4 = instantiate_node(SyntaxNode,input, index...index)
           end
-          s0 << r5
+          s0 << r4
         end
       end
     end
@@ -285,6 +273,198 @@ module Tumblr
     end
 
     node_cache[:block_end][start_index] = r0
+
+    r0
+  end
+
+  def _nt_block_name
+    start_index = index
+    if node_cache[:block_name].has_key?(index)
+      cached = node_cache[:block_name][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    s0, i0 = [], index
+    loop do
+      if has_terminal?('\G[^\\s}:;]', true, index)
+        r1 = true
+        @index += 1
+      else
+        r1 = nil
+      end
+      if r1
+        s0 << r1
+      else
+        break
+      end
+    end
+    if s0.empty?
+      @index = i0
+      r0 = nil
+    else
+      r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+    end
+
+    node_cache[:block_name][start_index] = r0
+
+    r0
+  end
+
+  def _nt_block_arguments
+    start_index = index
+    if node_cache[:block_arguments].has_key?(index)
+      cached = node_cache[:block_arguments][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    s0, i0 = [], index
+    loop do
+      r1 = _nt_block_argument
+      if r1
+        s0 << r1
+      else
+        break
+      end
+    end
+    if s0.empty?
+      @index = i0
+      r0 = nil
+    else
+      r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+    end
+
+    node_cache[:block_arguments][start_index] = r0
+
+    r0
+  end
+
+  module BlockArgument0
+  end
+
+  module BlockArgument1
+  end
+
+  def _nt_block_argument
+    start_index = index
+    if node_cache[:block_argument].has_key?(index)
+      cached = node_cache[:block_argument][index]
+      if cached
+        cached = SyntaxNode.new(input, index...(index + 1)) if cached == true
+        @index = cached.interval.end
+      end
+      return cached
+    end
+
+    i0, s0 = index, []
+    i1, s1 = index, []
+    s2, i2 = [], index
+    loop do
+      if has_terminal?('\G[a-zA-Z0-9]', true, index)
+        r3 = true
+        @index += 1
+      else
+        r3 = nil
+      end
+      if r3
+        s2 << r3
+      else
+        break
+      end
+    end
+    if s2.empty?
+      @index = i2
+      r2 = nil
+    else
+      r2 = instantiate_node(SyntaxNode,input, i2...index, s2)
+    end
+    s1 << r2
+    if r2
+      if has_terminal?('=', false, index)
+        r4 = instantiate_node(SyntaxNode,input, index...(index + 1))
+        @index += 1
+      else
+        terminal_parse_failure('=')
+        r4 = nil
+      end
+      s1 << r4
+      if r4
+        if has_terminal?('"', false, index)
+          r5 = instantiate_node(SyntaxNode,input, index...(index + 1))
+          @index += 1
+        else
+          terminal_parse_failure('"')
+          r5 = nil
+        end
+        s1 << r5
+        if r5
+          s6, i6 = [], index
+          loop do
+            if has_terminal?('\G[a-zA-Z0-9]', true, index)
+              r7 = true
+              @index += 1
+            else
+              r7 = nil
+            end
+            if r7
+              s6 << r7
+            else
+              break
+            end
+          end
+          if s6.empty?
+            @index = i6
+            r6 = nil
+          else
+            r6 = instantiate_node(SyntaxNode,input, i6...index, s6)
+          end
+          s1 << r6
+          if r6
+            if has_terminal?('"', false, index)
+              r8 = instantiate_node(SyntaxNode,input, index...(index + 1))
+              @index += 1
+            else
+              terminal_parse_failure('"')
+              r8 = nil
+            end
+            s1 << r8
+          end
+        end
+      end
+    end
+    if s1.last
+      r1 = instantiate_node(SyntaxNode,input, i1...index, s1)
+      r1.extend(BlockArgument0)
+    else
+      @index = i1
+      r1 = nil
+    end
+    s0 << r1
+    if r1
+      r10 = _nt_space
+      if r10
+        r9 = r10
+      else
+        r9 = instantiate_node(SyntaxNode,input, index...index)
+      end
+      s0 << r9
+    end
+    if s0.last
+      r0 = instantiate_node(SyntaxNode,input, i0...index, s0)
+      r0.extend(BlockArgument1)
+    else
+      @index = i0
+      r0 = nil
+    end
+
+    node_cache[:block_argument][start_index] = r0
 
     r0
   end

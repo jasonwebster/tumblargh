@@ -1,6 +1,5 @@
 module Tumblargh
   module Node
-
     class Block < Root
 
       def name
@@ -8,8 +7,12 @@ module Tumblargh
         elements.first.name
       end
 
+      def options
+        elements.first.options
+      end
+
       def to_tree
-        ary = [type, name]
+        ary = [type, name, options]
 
         # Second node is a Treetop SyntaxNode which holds
         # the rest of the block contents. Extra parse node
@@ -22,10 +25,9 @@ module Tumblargh
           end
         end
 
-        return ary
+        ary
       end
 
     end
-
   end
 end

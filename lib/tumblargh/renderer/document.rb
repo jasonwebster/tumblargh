@@ -1,18 +1,10 @@
- module Tumblargh
+module Tumblargh
   module Renderer
-
     class Document < Base
-
-      attr_accessor :config
-
-      def initialize(node, context, config)
-        @config = config.with_indifferent_access
-        super(node, context)
-      end
 
       # Are we rendering a permalink page?
       def permalink?
-        @config[:permalink] == true
+        options[:permalink] == true
       end
 
       # TAGS ----------
@@ -20,6 +12,7 @@
       contextual_tag :description
 
       def meta_description
+        strip_html(description)
         strip_html(description)
       end
 
@@ -32,7 +25,7 @@
         "#{context.url}rss"
       end
 
-      # Appearance options 
+      # Appearance options
       # http://www.tumblr.com/docs/en/custom_themes#appearance-options
       def color(key)
         custom_value_for_type :color, key
