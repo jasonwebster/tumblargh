@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tumblargh (0.2.0)
+    tumblargh (0.2.1)
       activesupport (>= 3.1)
       api_cache
       nokogiri
@@ -35,7 +35,7 @@ GEM
       multi_json (~> 1.0)
       simplecov-html (~> 0.5.3)
     simplecov-html (0.5.3)
-    treetop (1.4.14)
+    treetop (1.4.15)
       polyglot
       polyglot (>= 0.3.1)
 
