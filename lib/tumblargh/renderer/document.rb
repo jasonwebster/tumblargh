@@ -55,7 +55,8 @@ module Tumblargh
 
       def render
         node.map do |n|
-          Renderer.factory(n, self).render
+          renderer = Renderer.factory(n, self)
+          renderer.render unless renderer.nil?
         end.flatten.join('')
       end
     end

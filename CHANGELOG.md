@@ -1,5 +1,6 @@
 ## master
 
+- Don't raise an exception on missing blocks, merely log a warning
 - Implement `{TagsAsClasses}` tag
 
 ## 0.2.1
