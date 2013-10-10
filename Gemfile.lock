@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    tumblargh (0.2.1)
+    tumblargh (0.2.2)
       activesupport (>= 3.1)
       api_cache
       nokogiri
