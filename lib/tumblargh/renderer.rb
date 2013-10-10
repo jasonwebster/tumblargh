@@ -29,13 +29,16 @@ module Tumblargh
           args << n_post[1].to_i
         end
 
-        base = "Blocks::#{block_name}"
+        base = "Blocks::#{ block_name }"
       end
 
-      klass_name = "Tumblargh::Renderer::#{base}"
-      klass = klass_name.constantize
-
-      klass.new(node, context, options, *args)
+      klass_name = "Tumblargh::Renderer::#{ base }"
+      begin
+        klass = klass_name.constantize
+        klass.new(node, context, options, *args)
+      rescue NameError => e
+        puts "WARNING: Unsupported block `#{ klass_name }`"
+      end
     end
 
   end

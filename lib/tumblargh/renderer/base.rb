@@ -55,7 +55,6 @@ module Tumblargh
       alias_method :to_s, :render
 
       def method_missing(method, *arguments)
-        # puts "mm #{method} - #{self.class.name} -- context is: #{context.class.name}"
         raise "Can't find anything to do with '#{method}'" if context.nil?
         context.send(method, *arguments)
       end

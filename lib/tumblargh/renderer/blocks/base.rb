@@ -24,10 +24,11 @@ module Tumblargh
           _, type, options, *nodes = node
 
           res = nodes.map do |n|
-            Renderer.factory(n, self, options).render
+            renderer = Renderer.factory(n, self, options)
+            renderer.render unless renderer.nil?
           end
 
-          " #{res.join('')} "
+          " #{ res.join('') } "
         end
       end
     end
