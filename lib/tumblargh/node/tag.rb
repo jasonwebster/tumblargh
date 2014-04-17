@@ -7,7 +7,7 @@ module Tumblargh
 
         n = name.split(':')
         if n.size == 2
-          @type = "#{n.first.camelize.to_sym}Tag"
+          @type = "#{String.new(n.first).camelize.to_sym}Tag"
 
           if @type == 'BlockTag'
             raise ParserError, "There's an unclosed block somewhere near `#{name}`"

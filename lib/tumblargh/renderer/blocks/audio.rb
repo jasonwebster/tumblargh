@@ -26,6 +26,10 @@ module Tumblargh
           audio_player(:black)
         end
 
+        def audio_embed(size = 500)
+          context.embed
+        end
+        
         # def raw_audio_url
         #   context.player.match(/audio_file=([^&]+)/)[1] rescue nil
         # end

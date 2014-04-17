@@ -25,10 +25,14 @@ module Tumblargh
         "#{context.url}rss"
       end
 
+      def portrait_url(size = 128)
+        "http://assets.tumblr.com/images/default_avatar/pyramid_open_#{size}.png"
+      end
+
       # Appearance options
       # http://www.tumblr.com/docs/en/custom_themes#appearance-options
       def color(key)
-        custom_value_for_type :color, key
+        custom_value_for_type :color, key.downcase
       end
 
       def font(key)
@@ -43,12 +47,16 @@ module Tumblargh
         custom_value_for_type :text, key
       end
 
+      def lang(key)
+        Lang.from_string(key)
+      end
+
       def boolean(key)
         custom_value_for_type :if, key
       end
 
       def custom_value_for_type(type, key)
-        config[type][key] rescue raise "No appearance option for #{type}:#{key}"
+        config[type][key] rescue puts "No appearance option for #{type}:#{key}"
       end
 
       # END TAGS ------
@@ -62,3 +70,4 @@ module Tumblargh
     end
   end
 end
+
