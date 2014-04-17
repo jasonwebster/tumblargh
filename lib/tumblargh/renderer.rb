@@ -5,6 +5,7 @@ require 'tumblargh/renderer/blocks'
 require 'tumblargh/renderer/document'
 require 'tumblargh/renderer/literal'
 require 'tumblargh/renderer/tag'
+require 'tumblargh/renderer/lang'
 
 module Tumblargh
   module Renderer
