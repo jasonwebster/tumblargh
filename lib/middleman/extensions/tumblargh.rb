@@ -27,12 +27,13 @@ module Middleman
   # up with as a workaround.
   module Sitemap
     class Store
-      alias_method :orig_find_resource_by_destination_path, :find_resource_by_destination_path
 
       def find_resource_by_destination_path(request_path)
         request_path = "/index.html" if request_path.match(/^\/post\//)
         orig_find_resource_by_destination_path(request_path)
       end
+
+      alias_method :orig_find_resource_by_destination_path, :find_resource_by_destination_path
     end
   end
 
