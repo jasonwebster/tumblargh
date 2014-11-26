@@ -69,7 +69,7 @@ module Tumblargh
 
 
 
-      class Video < Photo
+      class Video < Post
       end
 
 
