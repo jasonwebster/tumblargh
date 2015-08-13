@@ -30,7 +30,7 @@ module Tumblargh
         end
 
         def day_of_month_suffix
-          day_of_month.ordinalize
+          day_of_month.to_i.ordinalize
         end
 
         def year
